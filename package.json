@@ -2,7 +2,17 @@
   "name": "ajaxified-pivotal-tracker",
   "description": "Pivotal tracker api",
   "version": "0.0.1",
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
   "private": true,
+  "env": {
+  "PYTHON": "/usr/local/bin/python2.7"
+  },
   "dependencies": {
     "express": "3.x",
     "async": "*",
