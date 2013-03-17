@@ -45,10 +45,36 @@ app.get('/projects', function (req, res) {
 app.get('/members', function (req, res) {
 	var api_token = req.headers.api_token;
 	pivotal.useToken(api_token);
-	pivotal.getMemberships([763665], function (err, ret) {
+	pivotal.getMemberships([673099], function (err, ret) {
 		res.send(ret);
 	});
-})
+});
+
+app.get('/iterations', function (req, res) {
+	var api_token = req.headers.api_token;
+	pivotal.useToken(api_token);
+	pivotal.getIterations([673099], 'backlog', function (err, ret) {
+		res.send(ret);
+	});
+});
+
+app.get('/done_iterations', function (req, res) {
+	var api_token = req.headers.api_token;
+	pivotal.useToken(api_token);
+	pivotal.getIterations([673099], 'done', function (err, ret) {
+		res.send(ret);
+	});
+});
+
+app.get('/current_iterations', function (req, res) {
+	var api_token = req.headers.api_token;
+	pivotal.useToken(api_token);
+	pivotal.getIterations([673099], 'current_backlog', function (err, ret) {
+		res.send(ret);
+	});
+});
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
