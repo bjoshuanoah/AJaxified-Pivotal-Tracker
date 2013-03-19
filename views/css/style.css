@@ -34,7 +34,8 @@ input.failure {
 }
 #login_overlay .login header {
   font-size: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  font-weight: bold;
 }
 #login_overlay .login .legal {
   text-align: center;
@@ -47,6 +48,9 @@ input.failure {
   margin-bottom: 0;
 }
 #login_overlay .login.logged_in {
+  top: -250px;
+}
+#login_overlay .login.default {
   top: -250px;
 }
 
@@ -85,7 +89,10 @@ header#main_header {
   background: rgba(0, 0, 0, 0.1);
   height: 30px;
   margin-bottom: 25px;
-  color: #fff;
+  color: #c8c8c8;
+  font-size: 15px;
+  padding: 7px 10px;
+  font-weight: bold;
 }
 
 #user_columns {

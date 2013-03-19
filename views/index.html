@@ -7,28 +7,29 @@
 
 	<body>
 		<section id="login_overlay">
-			<div class="login">
+			<div class="login default">
 				<div class="username_password">
 					<header>Log in with your Pivotal Credentials</header>
-					<input type="email" placeholder="Pivotal Username">
-					<input type="password" placeholder="Pivotal Password">
+					<input id="username" type="email" placeholder="Username or Email">
+					<input id="password" type="password" placeholder="Pivotal Password">
 					<span class="legal">We do not store your username or password</span>
 				</div>
 				<div class="api_token">
 					<header>Or log in with Pivotal API Token</header>
-					<input type="email" placeholder="Pivotal API Token">
+					<input id="api_token" type="email" placeholder="Pivotal API Token">
 				</div>
 			</div>
 		</section>
 		<section id="status_message">
 			<div class="connection_status"></div>
 		</section>
-		<header id="main_header"></header>
+		<header id="main_header">Pivotal Members</header>
 		<div id='user_columns'></div>
 
 
 		<script src="js/jquery.js"></script>
 		<script src="js/functions.js"></script>
 		<script src="js/scripts.js"></script>
+		<script src="js/events.js"></script>
 	</body>
 </html>

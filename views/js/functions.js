@@ -26,10 +26,8 @@ function localConstructor() {
 
 var local = new localConstructor();
 
-var logIn = function (username, password, callback) {
-    var obj = {};
-    obj.username = username;
-    obj.password = password;
+var logIn = function (credentials, callback) {
+    var obj = credentials;
     $.ajax({
         type: 'POST',
         url: '/login',
@@ -40,10 +38,15 @@ var logIn = function (username, password, callback) {
         },
         error: function (e) {
             statusMessage(e.responseText);
+            $('#username').addClass('failure');
+            $('#password').addClass('failure').removeClass('active');;
         },
         success: function (s) {
             console.log('success', s);
             $('.login').addClass('logged_in');
+            setTimeout(function  () {
+                $('.login input').val('');
+            },500)
             var data = s;
             var obj = {};
             obj.api_token = data.guid;
@@ -75,6 +78,7 @@ var getProjects = function (api_token) {
             console.log(e.status);
         },
         success: function (s) {
+            statusMessage('');
             console.log('success', s);
         }
     });

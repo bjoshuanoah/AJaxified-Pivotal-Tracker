@@ -1,4 +1,6 @@
-// API Token: 353ddbae79fe8b53ddb36fbe5f389e68
+if (local.get('credentials') == null) {
+    $('.login').removeClass('default');
+}
 
 
 // statusMessage('loading page');
