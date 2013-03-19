@@ -15,7 +15,79 @@ input {
     }
 }
 
+#main {
+    min-height: 620px;
+    position: relative;
+}
+#user_container {
+    height:620px;
+    overflow-x: auto;
+    @include transition(width .5s);
+    &.maximized {
+        width:100%;
+    }
+}
+.projects {
+    height:620px;
+    padding:5px;
+    background: rgba(70,70,70,1);
+    @include transition(width .5s);
+    &.minimized {
+        width:0%;
+        overflow: auto;
+    }
+    .project {
+        min-width:250px;
+        height:150px;
+        padding:5px 5px 20px;
+        margin: 2px 0 2px;
+        background: #333;
+        border:1px solid #555;
+        display: block;
+        position: relative;
+        color: #fff;
+        cursor: pointer;
+        @include transition(background .2s);
+        &:hover {
+            background: #454545;
+            cursor: pointer;
+        }
+        &.active {
+            background: #454545;
+            cursor: pointer;
+        }
+        header {
+            padding:5px;
+            font-size: 20px;
+            line-height: 20px;
+            border-bottom:  1px solid #444;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .info {
+            width:50%;
+            height:50px;
+            text-align: center;
+            cursor: pointer;
+            display: block;
+            float: left;
+            .key {
+                font-size: 13px;
+                cursor: pointer;
+                color: #999;
+            }
+            .value {
+                font-size:32px;
+                display: block;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
 #login_overlay {
+    z-index: 4;
     width:0;
     height:0;
     margin:0 auto;
@@ -58,6 +130,7 @@ input {
 }
 
 #status_message {
+    z-index: 3;
     width:0;
     height:0;
     margin:0 auto;
@@ -86,23 +159,38 @@ input {
 }
 
 header#main_header {
-    background: rgba(0,0,0,.1);
     height: 30px;
-    margin-bottom: 25px;
     color: rgb(200,200,200);
     font-size: 15px;
     padding:7px 10px;
     font-weight: bold;
+    #logged_in_header {
+        display: none;
+        span {
+            cursor: pointer;
+            float: right;
+            display: block;
+            padding:0 5px;
+        }
+        &.logged_in {
+            display: block;
+        }
+    }
 }
 
+#user_columns_container {
+    overflow-x: auto;
+    width:100%;
+}
 #user_columns {
     display: none;
     width: 5000px;
+    height: 630px;
     .user_column {
-        width:330px;
+        width:250px;
         display: none;
         vertical-align:top;
-        height: 630px;
+        min-height:630px;
         background:rgba(255,255,255,.1);
         margin:3px;
         &.active {
@@ -115,8 +203,6 @@ header#main_header {
             text-align: center;
             font-size: 22px;
             color: #efefef;
-            position: absolute;
-            top:-25px;
             width: 100%;
         }
         .user_stories {

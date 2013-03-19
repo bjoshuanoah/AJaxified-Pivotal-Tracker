@@ -8,9 +8,63 @@ $('#login_overlay').on('keyup', '#password:not(.active)', function (k) {
         credentials.username = $('#username').val();
         credentials.password = input.val();
         logIn(credentials, function () {
+            $('#logged_in_header').addClass('logged_in');
             input.removeClass('active');
             var api_token = local.get('credentials').api_token;
             getProjects(api_token);
         });
     }
 });
+
+$('#main').on('click', '#logout', function () {
+    $('#user_columns').fadeOut();
+    setTimeout(function () {
+        $('#user_columns').html('');
+        $('.projects').html('');
+        $('#logged_in_header').removeClass('logged_in');
+        closeSidebar();
+        local.clear();
+        $('.login').removeClass('logged_in').removeClass('default');
+    }, 400);
+
+});
+
+$('#main').on('click', '#settings', function () {
+    if ($('.projects').hasClass('minimized')) {
+        openSidebar();
+    } else {
+        closeSidebar();
+    }
+});
+
+$('.projects').on('click', '.project', function () {
+    $(this).addClass('selected');
+    var project_id = $(this).attr('id');
+    closeSidebar();
+    var api_token = local.get('credentials').api_token;
+    getMembers(api_token, project_id);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

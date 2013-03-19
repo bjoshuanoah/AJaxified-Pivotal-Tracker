@@ -23,11 +23,26 @@
 		<section id="status_message">
 			<div class="connection_status"></div>
 		</section>
-		<header id="main_header">Pivotal Members</header>
-		<div id='user_columns'></div>
+
+		<section id="main">
+			<div id="user_container" class="nine columns maximized">
+				<header id="main_header">
+					<div class="logo three columns">Pivotal Members</div>
+					<div id="logged_in_header" class="two columns">
+						<span id="settings">Projects</span><span id="logout">Log Out</span>
+					</div>
+				</header>
+				<div id="user_columns_container">
+					<div id='user_columns'></div>
+				</div>
+			</div>
+			<div class="projects three columns minimized"></div>
+		</section>
+
 
 
 		<script src="js/jquery.js"></script>
+		<script src="js/libs/handlebars.js"></script>
 		<script src="js/functions.js"></script>
 		<script src="js/scripts.js"></script>
 		<script src="js/events.js"></script>

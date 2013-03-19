@@ -22,9 +22,20 @@ function localConstructor() {
         localStorage.removeItem(key);
         return this;
     };
-};
+}
 
 var local = new localConstructor();
+
+var openSidebar = function () {
+    $('#user_container').removeClass('maximized');
+    $('.projects').removeClass('minimized');
+};
+
+var closeSidebar = function () {
+    $('#user_container').addClass('maximized');
+    $('.projects').addClass('minimized');
+};
+
 
 var logIn = function (credentials, callback) {
     var obj = credentials;
@@ -39,14 +50,14 @@ var logIn = function (credentials, callback) {
         error: function (e) {
             statusMessage(e.responseText);
             $('#username').addClass('failure');
-            $('#password').addClass('failure').removeClass('active');;
+            $('#password').addClass('failure').removeClass('active');
         },
         success: function (s) {
             console.log('success', s);
             $('.login').addClass('logged_in');
             setTimeout(function  () {
                 $('.login input').val('');
-            },500)
+            }, 500);
             var data = s;
             var obj = {};
             obj.api_token = data.guid;
@@ -59,6 +70,7 @@ var logIn = function (credentials, callback) {
         }
     });
 };
+
 
 var getProjects = function (api_token) {
     $.ajax({
@@ -79,7 +91,14 @@ var getProjects = function (api_token) {
         },
         success: function (s) {
             statusMessage('');
+            openSidebar();
             console.log('success', s);
+            var data = s;
+            $.get('/tpl/projects.tpl', function (source) {
+                 var template = Handlebars.compile(source);
+                    var html = template(data);
+                    $('.projects').append(html);
+            });
         }
     });
 };
@@ -156,6 +175,8 @@ var getMembers = function (api_token, project_id) {
                                     }
                                 }
                             }
+                            var width = $('.user_column.active').length * 257;
+                            $('#user_columns').outerWidth(width);
                             $('#user_columns').fadeIn('slow');
                             statusMessage('');
                         }

@@ -11,7 +11,90 @@ input.failure {
   background: #facccc;
 }
 
+#main {
+  min-height: 620px;
+  position: relative;
+}
+
+#user_container {
+  height: 620px;
+  overflow-x: auto;
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+}
+#user_container.maximized {
+  width: 100%;
+}
+
+.projects {
+  height: 620px;
+  padding: 5px;
+  background: #464646;
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+}
+.projects.minimized {
+  width: 0%;
+  overflow: auto;
+}
+.projects .project {
+  min-width: 250px;
+  height: 150px;
+  padding: 5px 5px 20px;
+  margin: 2px 0 2px;
+  background: #333;
+  border: 1px solid #555555;
+  display: block;
+  position: relative;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  transition: background 0.2s;
+}
+.projects .project:hover {
+  background: #454545;
+  cursor: pointer;
+}
+.projects .project.active {
+  background: #454545;
+  cursor: pointer;
+}
+.projects .project header {
+  padding: 5px;
+  font-size: 20px;
+  line-height: 20px;
+  border-bottom: 1px solid #444444;
+  font-weight: bold;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.projects .project .info {
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  float: left;
+}
+.projects .project .info .key {
+  font-size: 13px;
+  cursor: pointer;
+  color: #999;
+}
+.projects .project .info .value {
+  font-size: 32px;
+  display: block;
+  cursor: pointer;
+}
+
 #login_overlay {
+  z-index: 4;
   width: 0;
   height: 0;
   margin: 0 auto;
@@ -55,6 +138,7 @@ input.failure {
 }
 
 #status_message {
+  z-index: 3;
   width: 0;
   height: 0;
   margin: 0 auto;
@@ -86,24 +170,40 @@ input.failure {
 }
 
 header#main_header {
-  background: rgba(0, 0, 0, 0.1);
   height: 30px;
-  margin-bottom: 25px;
   color: #c8c8c8;
   font-size: 15px;
   padding: 7px 10px;
   font-weight: bold;
 }
+header#main_header #logged_in_header {
+  display: none;
+}
+header#main_header #logged_in_header span {
+  cursor: pointer;
+  float: right;
+  display: block;
+  padding: 0 5px;
+}
+header#main_header #logged_in_header.logged_in {
+  display: block;
+}
+
+#user_columns_container {
+  overflow-x: auto;
+  width: 100%;
+}
 
 #user_columns {
   display: none;
   width: 5000px;
+  height: 630px;
 }
 #user_columns .user_column {
-  width: 330px;
+  width: 250px;
   display: none;
   vertical-align: top;
-  height: 630px;
+  min-height: 630px;
   background: rgba(255, 255, 255, 0.1);
   margin: 3px;
 }
@@ -117,8 +217,6 @@ header#main_header {
   text-align: center;
   font-size: 22px;
   color: #efefef;
-  position: absolute;
-  top: -25px;
   width: 100%;
 }
 #user_columns .user_column .user_stories .user_story {

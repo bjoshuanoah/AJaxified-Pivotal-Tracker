@@ -30,6 +30,7 @@ app.configure(function(){
   app.use('/img', express.static(__dirname + '/views/img'));
   app.use('/js', express.static(__dirname + '/views/js'));
   app.use('/css', express.static(__dirname + '/views/css'));
+  app.use('/tpl', express.static(__dirname + '/views/tpl'));
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
