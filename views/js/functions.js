@@ -43,6 +43,7 @@ var logIn = function (username, password, callback) {
         },
         success: function (s) {
             console.log('success', s);
+            $('.login').addClass('logged_in');
             var data = s;
             var obj = {};
             obj.api_token = data.guid;
