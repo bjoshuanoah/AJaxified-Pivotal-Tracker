@@ -7,6 +7,31 @@ body {
   background: #383838;
 }
 
+#login_overlay {
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+}
+#login_overlay .login {
+  width: 300px;
+  height: 250px;
+  display: block;
+  position: absolute;
+  padding: 15px;
+  top: 150px;
+  left: -150px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #444444;
+  -webkit-transition: top 0.5s;
+  -moz-transition: top 0.5s;
+  -o-transition: top 0.5s;
+  transition: top 0.5s;
+  border-radius: 0 0 3px 3px;
+}
+#login_overlay .login.logged_in {
+  top: -250px;
+}
+
 #status_message {
   width: 0;
   height: 0;
@@ -16,10 +41,10 @@ body {
   display: block;
   position: absolute;
   top: 0;
-  left: -75px;
+  left: -175px;
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  width: 150px;
+  width: 350px;
   height: 30px;
   text-align: center;
   font-size: 15px;

@@ -11,7 +11,7 @@ var app = express();
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, api_token');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, api_token, project_id');
 
   // intercept OPTIONS method
   if ('OPTIONS' == req.method) {
@@ -43,41 +43,59 @@ app.get('/', function (req, res) {
 });
 
 app.get('/projects', function (req, res) {
-	var api_token = req.headers.api_token;
-	pivotal.useToken(api_token);
-	pivotal.getProjects(function (err, ret) {
-		res.send(ret);
+    var api_token = req.headers.api_token;
+    pivotal.useToken(api_token);
+    pivotal.getProjects(function (err, ret) {
+        res.send(ret);
+    });
+});
+
+app.post('/login', function (req, res) {
+            var data = req.body;
+            var username = data.username;
+            var password = data.password;
+            console.log(username, password);
+	pivotal.getToken(username, password, function (err, ret) {
+            if (!ret) {
+                res.json(403, "Usename or Password do not match");
+            } else {
+                res.send(ret);
+            }
 	});
 });
 
 app.get('/members', function (req, res) {
 	var api_token = req.headers.api_token;
+    var project_id = req.headers.project_id;
 	pivotal.useToken(api_token);
-	pivotal.getMemberships([673099], function (err, ret) {
+	pivotal.getMemberships([project_id], function (err, ret) {
 		res.send(ret);
 	});
 });
 
 app.get('/iterations', function (req, res) {
 	var api_token = req.headers.api_token;
+    var project_id = req.headers.project_id;
 	pivotal.useToken(api_token);
-	pivotal.getIterations([673099], 'backlog', function (err, ret) {
+	pivotal.getIterations([project_id], 'backlog', function (err, ret) {
 		res.send(ret);
 	});
 });
 
 app.get('/done_iterations', function (req, res) {
 	var api_token = req.headers.api_token;
+    var project_id = req.headers.project_id;
 	pivotal.useToken(api_token);
-	pivotal.getIterations([673099], 'done', function (err, ret) {
+	pivotal.getIterations([project_id], 'done', function (err, ret) {
 		res.send(ret);
 	});
 });
 
 app.get('/current_iterations', function (req, res) {
 	var api_token = req.headers.api_token;
+    var project_id = req.headers.project_id;
 	pivotal.useToken(api_token);
-	pivotal.getIterations([673099], 'current_backlog', function (err, ret) {
+	pivotal.getIterations([project_id], 'current_backlog', function (err, ret) {
 		res.send(ret);
 	});
 });
