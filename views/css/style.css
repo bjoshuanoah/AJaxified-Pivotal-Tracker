@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  background: #383838;
+}
+
+#status_message {
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+}
+#status_message .connection_status {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -75px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 18px;
+  padding-top: 6px;
+  border-left: 1px solid #444444;
+  border-right: 1px solid #444444;
+  border-bottom: 1px solid #444444;
+  -webkit-transition: top 0.3s;
+  -moz-transition: top 0.3s;
+  -o-transition: top 0.3s;
+  transition: top 0.3s;
+  border-radius: 0 0 3px 3px;
+}
+#status_message .connection_status:empty {
+  top: -30px;
+}
+
+header#main_header {
+  height: 55px;
+  color: #fff;
+}
+
+#user_columns {
+  display: none;
+  width: 5000px;
+}
+#user_columns .user_column {
+  width: 330px;
+  display: none;
+  vertical-align: top;
+  height: 630px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 3px;
+}
+#user_columns .user_column.active {
+  display: inline-block;
+}
+#user_columns .user_column:last-of-type {
+  float: none;
+}
+#user_columns .user_column header {
+  text-align: center;
+  font-size: 22px;
+  color: #efefef;
+  position: absolute;
+  top: -25px;
+  width: 100%;
+}
+#user_columns .user_column .user_stories .user_story {
+  padding: 5px 5px 20px;
+  margin: 2px 0 2px;
+  background: #fff;
+  border: 1px solid #efefef;
+  display: block;
+  position: relative;
+}
+#user_columns .user_column .user_stories .user_story footer {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  color: #999;
+  position: absolute;
+  bottom: 0;
+  height: 15px;
+  padding: 2px;
+  width: 100%;
+  left: 0;
+}
+#user_columns .user_column .user_stories .user_story[status="accepted"] {
+  font-size: 12px;
+  display: none;
+}
+#user_columns .user_column .user_stories .user_story[status="rejected"] {
+  background: #ffe5e5;
+}
+#user_columns .user_column .user_stories .user_story[status="delivered"] {
+  background: #e5ffe5;
+}
+#user_columns .user_column .user_stories .user_story[status="finished"] {
+  background: #ffff99;
+}
+#user_columns .user_column .user_stories .user_story[status="started"] {
+  background: #ffffe5;
+}
+#user_columns .user_column .user_stories .user_story[status="unstarted"] {
+  opacity: .5;
+  background: #999;
+  color: #fff;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="1"] {
+  min-height: 22px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="2"] {
+  min-height: 32px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="3"] {
+  min-height: 42px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="4"] {
+  min-height: 52px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="5"] {
+  min-height: 62px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="6"] {
+  min-height: 72px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="7"] {
+  min-height: 82px;
+}
+#user_columns .user_column .user_stories .user_story[difficulty="8"] {
+  min-height: 92px;
+}

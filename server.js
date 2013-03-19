@@ -27,11 +27,19 @@ app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.use(allowCrossDomain);
   app.use(express.favicon());
-  app.use('/img', express.static(__dirname + '/images'));
+  app.use('/img', express.static(__dirname + '/views/img'));
+  app.use('/js', express.static(__dirname + '/views/js'));
+  app.use('/css', express.static(__dirname + '/views/css'));
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.methodOverride());
+  app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+});
+
+app.get('/', function (req, res) {
+        res.render('index.html');
 });
 
 app.get('/projects', function (req, res) {

@@ -1,0 +1,170 @@
+@import "compass/css3";
+
+* {
+            box-sizing: border-box;
+            position: relative;
+}
+
+body {
+    background: rgba(56,56,56,1);
+}
+
+#status_message {
+    width:0;
+    height:0;
+    margin:0 auto;
+    .connection_status{
+        display: block;
+        position: absolute;
+        top:0;
+        left:-75px;
+        background: rgba(0,0,0,.4);
+        color: #fff;
+        width:150px;
+        height:30px;
+        text-align: center;
+        font-size: 15px;
+        line-height: 18px;
+        padding-top:6px;
+        border-left:1px solid #444;
+        border-right:1px solid #444;
+        border-bottom:1px solid #444;
+        @include transition(top .3s);
+        border-radius: 0 0 3px 3px;
+        &:empty {
+            top:-30px;
+        }
+    }
+}
+
+header#main_header {
+    height: 55px;
+    color: #fff;
+}
+
+#user_columns {
+    display: none;
+    width: 5000px;
+    .user_column {
+        width:330px;
+        display: none;
+        vertical-align:top;
+        height: 630px;
+        background:rgba(255,255,255,.1);
+        margin:3px;
+        &.active {
+            display: inline-block;
+        }
+        &:last-of-type {
+            float: none;
+        }
+        header {
+            text-align: center;
+            font-size: 22px;
+            color: #efefef;
+            position: absolute;
+            top:-25px;
+            width: 100%;
+        }
+        .user_stories {
+            .user_story {
+                padding:5px 5px 20px;
+                margin: 2px 0 2px;
+                background: #fff;
+                border:1px solid #efefef;
+                display: block;
+                position: relative;
+                footer {
+                    font-size: 10px;
+                    background: rgba(255,255,255,.4);
+                    color: #999;
+                    position: absolute;
+                    bottom: 0;
+                    height: 15px;
+                    padding:2px;
+                    width: 100%;
+                    left:0;
+                }
+                &[status="accepted"] {
+                    font-size: 12px;
+                    display: none;
+                }
+                &[status="rejected"] {
+                    background: lighten(#ff0000, 45%);
+                }
+                &[status="delivered"] {
+                    background: lighten(#00ff00, 45%);
+                }
+                &[status="finished"] {
+                    background: lighten(#ffff00, 30%);
+                }
+                &[status="started"] {
+                    background: lighten(#ffff00, 45%);
+                }
+                &[status="unstarted"] {
+                    opacity: .5;
+                    background: #999;
+                    color:#fff;
+                }
+                &[difficulty="1"] {
+                    min-height: 22px;
+                }
+                &[difficulty="2"] {
+                    min-height: 32px;
+                }
+                &[difficulty="3"] {
+                    min-height: 42px;
+                }
+                &[difficulty="4"] {
+                    min-height: 52px;
+                }
+                &[difficulty="5"] {
+                    min-height: 62px;
+                }
+                &[difficulty="6"] {
+                    min-height: 72px;
+                }
+                &[difficulty="7"] {
+                    min-height: 82px;
+                }
+                &[difficulty="8"] {
+                    min-height: 92px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
