@@ -227,7 +227,12 @@ header#main_header {
                 }
                 &[status="accepted"] {
                     font-size: 12px;
+                    background: lighten(#00ff00, 42%);
+                    border:1px solid lighten(#00ff00, 30%);
                     display: none;
+                    &.displayed {
+                        display: block;
+                    }
                 }
                 &[status="rejected"] {
                     background: lighten(#ff0000, 45%);
@@ -247,29 +252,30 @@ header#main_header {
                     color:#fff;
                 }
                 &[difficulty="1"] {
-                    min-height: 22px;
+                    min-height: 35px;
                 }
                 &[difficulty="2"] {
-                    min-height: 32px;
+                    min-height: 50px;
                 }
                 &[difficulty="3"] {
-                    min-height: 42px;
+                    min-height: 75px;
                 }
                 &[difficulty="4"] {
-                    min-height: 52px;
+                    min-height: 90px;
                 }
                 &[difficulty="5"] {
-                    min-height: 62px;
+                    min-height: 110px;
                 }
                 &[difficulty="6"] {
-                    min-height: 72px;
+                    min-height: 140px;
                 }
                 &[difficulty="7"] {
-                    min-height: 82px;
+                    min-height: 180px;
                 }
                 &[difficulty="8"] {
-                    min-height: 92px;
+                    min-height: 220px;
                 }
+
             }
         }
     }
