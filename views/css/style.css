@@ -39,6 +39,7 @@ input.failure {
 }
 .projects.minimized {
   width: 0%;
+  padding: 0;
   overflow: auto;
 }
 .projects .project {
@@ -101,12 +102,12 @@ input.failure {
 }
 #login_overlay .login {
   color: #fff;
-  width: 320px;
+  width: 486px;
   display: block;
   position: absolute;
   padding: 15px;
   top: 150px;
-  left: -160px;
+  left: -243px;
   background: rgba(0, 0, 0, 0.4);
   border: 10px solid rgba(255, 255, 255, 0.15);
   -webkit-transition: top 0.5s;

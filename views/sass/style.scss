@@ -34,6 +34,7 @@ input {
     @include transition(width .5s);
     &.minimized {
         width:0%;
+        padding:0;
         overflow: auto;
     }
     .project {
@@ -93,12 +94,12 @@ input {
     margin:0 auto;
     .login {
         color: #fff;
-        width:320px;
+        width:486px;
         display: block;
         position: absolute;
         padding:15px;
         top:150px;
-        left:-160px;
+        left:-243px;
         background: rgba(0,0,0,.4);
         border:10px solid rgba(255,255,255,.15);
         @include transition(top .5s);

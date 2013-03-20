@@ -1,9 +1,10 @@
 var resizeStuff = function () {
-    var size = document.height;
-    $('#main').css({'height': size + 'px'});
-    $('#user_columns').css({'height': size - 30 + 'px'});
-    $('#user_container').css({'height': size + 'px'});
-    $('.projects').css({'height': size + 'px'});
+    var size = window.innerHeight;
+    $('#main').css({'min-height': size + 'px'});
+    $('#user_columns').css({'min-height': size - 30 + 'px'});
+    $('#user_container').css({'min-height': size + 'px'});
+    $('.projects').css({'min-height': size + 'px'});
+    console.log(size);
 };
 
 resizeStuff();
