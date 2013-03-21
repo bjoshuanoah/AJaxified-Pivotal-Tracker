@@ -206,7 +206,7 @@ header#main_header #logged_in_header.logged_in {
   vertical-align: top;
   min-height: 630px;
   background: rgba(255, 255, 255, 0.1);
-  margin: 3px;
+  margin: 1px;
 }
 #user_columns .user_column.active {
   display: inline-block;

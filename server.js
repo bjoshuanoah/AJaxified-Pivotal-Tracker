@@ -74,6 +74,15 @@ app.get('/members', function (req, res) {
 	});
 });
 
+app.get('/stories', function (req, res) {
+    var api_token = req.headers.api_token;
+    var project_id = req.headers.project_id;
+    pivotal.useToken(api_token);
+    pivotal.getStories([project_id], {}, function (err, ret) {
+        res.send(ret);
+    });
+});
+
 app.get('/iterations', function (req, res) {
 	var api_token = req.headers.api_token;
     var project_id = req.headers.project_id;

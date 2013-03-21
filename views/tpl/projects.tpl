@@ -1,26 +1,26 @@
 
 {{#if project.length}}
- {{#each project}}
-<div class="project" id="{{id}}">
-    <header>
-        {{name}}
-    </header>
-    <div>
-        <div class="info">
-            <span class="value">{{current_iteration_number}}</span><span class="key">Current Iteration:</span>
+    {{#each project}}
+        <div class="project" id="{{id}}">
+            <header>
+                {{name}}
+            </header>
+            <div>
+                <div class="info">
+                    <span class="value">{{current_iteration_number}}</span><span class="key">Current Iteration:</span>
+                </div>
+                <div class="info">
+                    <span class="value">{{iteration_length}}</span><span class="key">Iteration Length:</span>
+                </div>
+                <div class="info">
+                <span class="value">{{current_velocity}}</span><span class="key">Current Velocity</span>
+                </div>
+                <div class="info">
+                    <span class="value">{{initial_velocity}}</span><span class="key">Estimated Velocity</span>
+                </div>
+            </div>
         </div>
-        <div class="info">
-            <span class="value">{{iteration_length}}</span><span class="key">Iteration Length:</span>
-        </div>
-        <div class="info">
-        <span class="value">{{current_velocity}}</span><span class="key">Current Velocity</span>
-        </div>
-        <div class="info">
-            <span class="value">{{initial_velocity}}</span><span class="key">Estimated Velocity</span>
-        </div>
-    </div>
-</div>
-{{/each}}
+    {{/each}}
 {{else}}
     {{#if project.id}}
         <div class="project" id="{{project.id}}">
@@ -42,11 +42,11 @@
                 </div>
             </div>
         </div>
-        {{else}}
-            <div class="project empty">
-                <header>Sorry, no projects yet</header>
-            </div>
-        {{/if}}
+    {{else}}
+        <div class="project empty">
+            <header>Sorry, no projects yet</header>
+        </div>
+    {{/if}}
 {{/if}}
 
 

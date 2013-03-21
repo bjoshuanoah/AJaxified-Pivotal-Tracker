@@ -22,6 +22,9 @@ if (local.get('credentials') == null) {
     getProjects(api_token);
 }
 
+var members_obj = {};
+members_obj.members = [];
+local.write('members', members_obj);
 
 // statusMessage('loading page');
 
