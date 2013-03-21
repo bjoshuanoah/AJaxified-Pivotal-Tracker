@@ -103,64 +103,64 @@ var getStories =function (api_token, project_id) {
     var member_length = member_obj.members.length;
     console.log(member_obj, member_length);
     $.ajax({
-        type: 'GET',
-        url: '/stories',
-        beforeSend: function(xhr){
-             xhr.setRequestHeader('api_token', api_token);
-            xhr.setRequestHeader('project_id', project_id);
-            statusMessage('Loading Stories');
-        },
-        error: function (e) {
-            console.log('error', e);
-            console.log(e.responseText);
-            console.log(e.statusText);
-            console.log(e.status);
-        },
-        success: function (s) {
-            console.log('success', s);
-            var data = s;
-            var stories = data.story;
-            var iteration_count = stories.length;
-            for (i=0; i < iteration_count; i++) {
-                var story = stories[i];
-                if (story.accepted_at) {
-                    var time = new Date(story.accepted_at);
-                    story.ts = time.getTime();
-                }
-                if (story.owned_by) {
-                    story.unique_id = story.owned_by.replace(/ /g, '');
-                } else {
-                    story.unique_id = 'nya';
-                }
-                var member = story.unique_id;
-                for (var member_iteration = 0; member_iteration < member_length; member_iteration++) {
-                    var unique_id = member_obj.members[member_iteration].unique_id;
-                    if (unique_id == member) {
-                        member_obj.members[member_iteration].stories.push(story);
+            type: 'GET',
+            url: '/stories',
+            beforeSend: function(xhr){
+                 xhr.setRequestHeader('api_token', api_token);
+                xhr.setRequestHeader('project_id', project_id);
+                statusMessage('Loading Stories');
+            },
+            error: function (e) {
+                console.log('error', e);
+                console.log(e.responseText);
+                console.log(e.statusText);
+                console.log(e.status);
+            },
+            success: function (s) {
+                console.log('success', s);
+                var data = s;
+                var stories = data.story;
+                var iteration_count = stories.length;
+                for (i=0; i < iteration_count; i++) {
+                    var story = stories[i];
+                    if (story.accepted_at) {
+                        var time = new Date(story.accepted_at);
+                        story.ts = time.getTime();
+                    }
+                    if (story.owned_by) {
+                        story.unique_id = story.owned_by.replace(/ /g, '');
+                    } else {
+                        story.unique_id = 'nya';
+                    }
+                    var member = story.unique_id;
+                    for (var member_iteration = 0; member_iteration < member_length; member_iteration++) {
+                        var unique_id = member_obj.members[member_iteration].unique_id;
+                        if (unique_id == member) {
+                            member_obj.members[member_iteration].stories.push(story);
+                        }
                     }
                 }
-            }
-            $.get('/tpl/stories.tpl', function (source) {
-                var template = Handlebars.compile(source);
-                var html = template(member_obj);
-                $('#user_columns').html(html);
-                $('.user_column').each(function () {
-                    var column = $(this);
-                    var column_stories_length = $('.user_story', column).length;
-                    if (column_stories_length > 0) {
-                        column.addClass('active');
+                $.get('/tpl/stories.tpl', function (source) {
+                    var template = Handlebars.compile(source);
+                    var html = template(member_obj);
+                    $('#user_columns').html(html);
+                    $('.user_column').each(function () {
+                        var column = $(this);
+                        var column_stories_length = $('.user_story', column).length;
+                        if (column_stories_length > 0) {
+                            column.addClass('active');
+                        }
+                        var width = $('.user_column.active').length * 257;
+                        $('#user_columns').outerWidth(width);
+                    });
+                    $('#user_columns').fadeIn('slow');
+                    statusMessage('');
+                    if (user_type === '') {
+                        local.write('members', member_obj);
                     }
-                    var width = $('.user_column.active').length * 257;
-                    $('#user_columns').outerWidth(width);
                 });
-                $('#user_columns').fadeIn('slow');
-                statusMessage('');
-                if (user_type === '') {
-                    local.write('members', member_obj);
-                }
-            });
-        }
-    });
+            }
+        });
 };
 
 var getMembers = function (api_token, project_id) {

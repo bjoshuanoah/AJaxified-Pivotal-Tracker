@@ -439,6 +439,10 @@ header#main_header .header_logo {
   padding-left: 20px;
   background: url("/img/favicon.png") no-repeat left;
   cursor: default;
+  display: none;
+}
+header#main_header .header_logo.logged_in {
+  display: block;
 }
 header#main_header #logged_in_header {
   display: none;

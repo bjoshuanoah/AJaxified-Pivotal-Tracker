@@ -285,6 +285,10 @@ header#main_header {
         padding-left:20px;
         background: url('/img/favicon.png') no-repeat left;
         cursor: default;
+        display: none;
+        &.logged_in {
+            display: block;
+        }
     }
     #logged_in_header {
         display: none;

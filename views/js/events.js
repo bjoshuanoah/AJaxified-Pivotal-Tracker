@@ -12,6 +12,7 @@ $('#login_overlay').on('keyup', '#password:not(.active)', function (k) {
             input.removeClass('active');
             var api_token = local.get('credentials').api_token;
             getProjects(api_token);
+            $('.header_logo').addClass('logged_in');
         });
     }
 });
@@ -22,11 +23,14 @@ $('#main').on('click', '#logout', function () {
         $('#user_columns').html('');
         $('.projects').html('');
         $('#logged_in_header').removeClass('logged_in');
+        $('.header_logo').removeClass('logged_in');
         closeSidebar();
         local.clear();
         $('.login').removeClass('logged_in').removeClass('default');
     }, 400);
-
+    var members_obj = {};
+    members_obj.members = [];
+    local.write('members', members_obj);
 });
 
 $('#main').on('click', '#settings', function () {
