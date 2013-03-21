@@ -43,7 +43,7 @@
             </div>
         </div>
         {{else}}
-            <div class="project">
+            <div class="project empty">
                 <header>Sorry, no projects yet</header>
             </div>
         {{/if}}
