@@ -1,5 +1,47 @@
 @import "compass/css3";
 
+@-webkit-keyframes rotate {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(359deg));}
+}
+@-moz-keyframes rotate {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(359deg));}
+}
+@-ms-keyframes rotate {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(359deg));}
+}
+@-o-keyframes rotate {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(359deg));}
+}
+@keyframes rotate {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(359deg));}
+}
+
+@-webkit-keyframes rotate_cc {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(-359deg));}
+}
+@-moz-keyframes rotate_cc {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(-359deg));}
+}
+@-ms-keyframes rotate_cc {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(-359deg));}
+}
+@-o-keyframes rotate_cc {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(-359deg));}
+}
+@keyframes rotate_cc {
+    0% {@include transform(rotate(0deg));}
+    100% {@include transform(rotate(-359deg));}
+}
+
 * {
             box-sizing: border-box;
             position: relative;
@@ -104,6 +146,80 @@ input {
         border:10px solid rgba(255,255,255,.15);
         @include transition(top .5s);
         border-radius: 3px;
+        .logo {
+            .logo_text {
+                font-size: 32px;
+                line-height: 30px;
+                text-align: center;
+                position: absolute;
+                top:88px;
+                @media screen and (max-width: 723px) {
+                    font-size: 46px;
+                    line-height: 39px;
+                    text-align: left;
+                    top: 30px;
+                    left: 193px;
+                    width: 150px;
+                }
+            }
+            .gear {
+                width:78px;
+                height:78px;
+                position: absolute;
+                border-radius: 50%;
+                -webkit-animation: rotate 20s infinite linear;
+                -moz-animation: rotate 20s infinite linear;
+                -ms-animation: rotate 20s infinite linear;
+                -o-animation: rotate 20s infinite linear;
+                animation: rotate 20s infinite linear;
+                &.gear_1{
+                    background: url(/img/gear_1.png);
+                    background-size: 100% 100%;
+                    z-index: 5;
+                    top:5%;
+                    left:11%;
+                }
+                &.gear_2{
+                    background: url(/img/gear_2.png);
+                    background-size: 100% 100%;
+                    z-index: 7;
+                    top:11%;
+                    left:37%;
+                }
+                &.gear_3{
+                    background: url(/img/gear_3.png);
+                    background-size: 100% 100%;
+                    z-index: 6;
+                    top:-1%;
+                    left:44%;
+                    -webkit-animation: rotate_cc 20s infinite linear;
+                    -moz-animation: rotate_cc 20s infinite linear;
+                    -ms-animation: rotate_cc 20s infinite linear;
+                    -o-animation: rotate_cc 20s infinite linear;
+                    animation: rotate_cc 20s infinite linear;
+                }
+                 @media screen and (max-width: 723px) {
+                    width:105px;
+                    height:105px;
+                     &.gear_1{
+                        left:3%;
+                    }
+                    &.gear_2{
+                        left:14%;
+                        top:14%;
+                    }
+                    &.gear_3{
+                        left:20%;
+                    }
+                }
+            }
+            img {
+                opacity: 0;
+                @media screen and (max-width: 723px) {
+                    height:131px;
+                }
+            }
+        }
         header {
             font-size: 15px;
             margin-bottom: 6px;
@@ -165,6 +281,11 @@ header#main_header {
     font-size: 15px;
     padding:7px 10px;
     font-weight: bold;
+    .header_logo {
+        padding-left:20px;
+        background: url('/img/favicon.png') no-repeat left;
+        cursor: default;
+    }
     #logged_in_header {
         display: none;
         span {

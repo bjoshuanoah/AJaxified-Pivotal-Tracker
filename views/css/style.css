@@ -1,3 +1,183 @@
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-ms-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes rotate_cc {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-359deg);
+    -moz-transform: rotate(-359deg);
+    -ms-transform: rotate(-359deg);
+    -o-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
+@-moz-keyframes rotate_cc {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-359deg);
+    -moz-transform: rotate(-359deg);
+    -ms-transform: rotate(-359deg);
+    -o-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
+@-ms-keyframes rotate_cc {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-359deg);
+    -moz-transform: rotate(-359deg);
+    -ms-transform: rotate(-359deg);
+    -o-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
+@-o-keyframes rotate_cc {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-359deg);
+    -moz-transform: rotate(-359deg);
+    -ms-transform: rotate(-359deg);
+    -o-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
+@keyframes rotate_cc {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-359deg);
+    -moz-transform: rotate(-359deg);
+    -ms-transform: rotate(-359deg);
+    -o-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
 * {
   box-sizing: border-box;
   position: relative;
@@ -116,6 +296,84 @@ input.failure {
   transition: top 0.5s;
   border-radius: 3px;
 }
+#login_overlay .login .logo .logo_text {
+  font-size: 32px;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  top: 88px;
+}
+@media screen and (max-width: 723px) {
+  #login_overlay .login .logo .logo_text {
+    font-size: 46px;
+    line-height: 39px;
+    text-align: left;
+    top: 30px;
+    left: 193px;
+    width: 150px;
+  }
+}
+#login_overlay .login .logo .gear {
+  width: 78px;
+  height: 78px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-animation: rotate 20s infinite linear;
+  -moz-animation: rotate 20s infinite linear;
+  -ms-animation: rotate 20s infinite linear;
+  -o-animation: rotate 20s infinite linear;
+  animation: rotate 20s infinite linear;
+}
+#login_overlay .login .logo .gear.gear_1 {
+  background: url(/img/gear_1.png);
+  background-size: 100% 100%;
+  z-index: 5;
+  top: 5%;
+  left: 11%;
+}
+#login_overlay .login .logo .gear.gear_2 {
+  background: url(/img/gear_2.png);
+  background-size: 100% 100%;
+  z-index: 7;
+  top: 11%;
+  left: 37%;
+}
+#login_overlay .login .logo .gear.gear_3 {
+  background: url(/img/gear_3.png);
+  background-size: 100% 100%;
+  z-index: 6;
+  top: -1%;
+  left: 44%;
+  -webkit-animation: rotate_cc 20s infinite linear;
+  -moz-animation: rotate_cc 20s infinite linear;
+  -ms-animation: rotate_cc 20s infinite linear;
+  -o-animation: rotate_cc 20s infinite linear;
+  animation: rotate_cc 20s infinite linear;
+}
+@media screen and (max-width: 723px) {
+  #login_overlay .login .logo .gear {
+    width: 105px;
+    height: 105px;
+  }
+  #login_overlay .login .logo .gear.gear_1 {
+    left: 3%;
+  }
+  #login_overlay .login .logo .gear.gear_2 {
+    left: 14%;
+    top: 14%;
+  }
+  #login_overlay .login .logo .gear.gear_3 {
+    left: 20%;
+  }
+}
+#login_overlay .login .logo img {
+  opacity: 0;
+}
+@media screen and (max-width: 723px) {
+  #login_overlay .login .logo img {
+    height: 131px;
+  }
+}
 #login_overlay .login header {
   font-size: 15px;
   margin-bottom: 6px;
@@ -176,6 +434,11 @@ header#main_header {
   font-size: 15px;
   padding: 7px 10px;
   font-weight: bold;
+}
+header#main_header .header_logo {
+  padding-left: 20px;
+  background: url("/img/favicon.png") no-repeat left;
+  cursor: default;
 }
 header#main_header #logged_in_header {
   display: none;
