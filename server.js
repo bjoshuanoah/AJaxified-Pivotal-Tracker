@@ -26,7 +26,7 @@ var allowCrossDomain = function(req, res, next) {
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.use(allowCrossDomain);
-  app.use(express.favicon());
+  // app.use(express.favicon());
   app.use('/img', express.static(__dirname + '/views/img'));
   app.use('/js', express.static(__dirname + '/views/js'));
   app.use('/css', express.static(__dirname + '/views/css'));
