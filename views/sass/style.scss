@@ -350,6 +350,14 @@ header#main_header {
                     width: 100%;
                     left:0;
                 }
+                &[type="week_indicator"] {
+                    width: 256px;
+                    left: -4px;
+                    border: 0;
+                    background: rgb(124, 124, 124);
+                    padding: 5px;
+                    color: #fff;
+                }
                 &[status="accepted"] {
                     font-size: 12px;
                     background: lighten(#00ff00, 42%);

@@ -25,6 +25,50 @@ function localConstructor() {
 
 var local = new localConstructor();
 
+var weekToDate = function (year, week_number) {
+    var month_name, end_month_name,
+        january_tenth = new Date( year,0,10,12,0,0),
+        january_fourth = new Date( year,0,4,12,0,0),
+        mon1 = january_fourth.getTime() - (january_tenth.getDay() * 86400000);
+    start_date = new Date(mon1 + ((week_number - 1)  * 7 ) * 86400000);
+    var month = start_date.getMonth(),
+        day = start_date.getDate(),
+        year = start_date.getFullYear(),
+        time_stamp = start_date.getTime()/1000;
+
+    switch (month) {case 0: month_name='Jan.'; break; case 1: month_name='Feb.'; break; case 2: month_name='Mar.'; break; case 3: month_name='Apr.'; break; case 4: month_name='May'; break; case 5: month_name='Jun.'; break; case 6: month_name='Jul.'; break; case 7: month_name='Aug.'; break; case 8: month_name='Sep.'; break; case 9: month_name='Oct.'; break; case 10: month_name='Nov.'; break; case 11: month_name='Dec.'; break; }
+
+
+    end_date = new Date(mon1 + ((week_number - 1)  * 7 + 6) * 86400000);
+    var end_month_number = end_date.getMonth();
+    var end_day = end_date.getDate();
+    var end_year = end_date.getFullYear();
+
+    switch (end_month_number) {case 0: end_month_name='Jan.'; break; case 1: end_month_name='Feb.'; break; case 2: end_month_name='Mar.'; break; case 3: end_month_name='Apr.'; break; case 4: end_month_name='May'; break; case 5: end_month_name='Jun.'; break; case 6: end_month_name='Jul.'; break; case 7: end_month_name='Aug.'; break; case 8: end_month_name='Sep.'; break; case 9: end_month_name='Oct.'; break; case 10: end_month_name='Nov.'; break; case 11: end_month_name='Dec.'; break; }
+
+
+    var date = {};
+    date.start_month_name = month_name;
+    date.start_month_number = month;
+    date.end_month_name = end_month_name;
+    date.end_month_number = end_month_number;
+    date.start_year = year;
+    date.end_year = end_year;
+    date.start_day = day;
+    date.end_day = end_day;
+    date.start_time_stamp = start_date.getTime()/1000 - (20 *(3600));
+    date.ts = start_date.getTime()/1000 - (20 *(3600));
+    date.type = 'week';
+    date.end_time_stamp = end_date.getTime()/1000 + (4 * (3600)) - 1;
+
+    return date;
+};
+var week_array = [];
+for (var week = 1; week < 53; week++) {
+    // week_array.push(weekToDate(2012, week));
+    week_array.push(weekToDate(2013, week));
+}
+
 var openSidebar = function () {
     $('#user_container').removeClass('maximized');
     $('.projects').removeClass('minimized');
@@ -130,13 +174,13 @@ var getStories =function (api_token, project_id) {
                   return 0;
                 }
                 for (i=0; i < iteration_count; i++) {
-                    var story = stories[i];
+                    var story = stories[i], time;
                     if (story.accepted_at) {
-                        var time = new Date(story.accepted_at);
-                        story.ts = time.getTime();
+                        time = new Date(story.accepted_at);
+                        story.ts = time.getTime()/1000;
                     } else {
-                        var time = new Date();
-                        story.ts = time.getTime();
+                        time = new Date();
+                        story.ts = time.getTime()/1000;
                     }
                     if (story.owned_by) {
                         story.unique_id = story.owned_by.replace(/ /g, '');
@@ -156,9 +200,10 @@ var getStories =function (api_token, project_id) {
                     var template = Handlebars.compile(source);
                     var html = template(member_obj);
                     $('#user_columns').html(html);
+
                     $('.user_column').each(function () {
                         var column = $(this);
-                        var column_stories_length = $('.user_story', column).length;
+                        var column_stories_length = $('.user_story:not([type="week_indicator"])', column).length;
                         if (column_stories_length > 0) {
                             column.addClass('active');
                         }
@@ -209,7 +254,7 @@ var getMembers = function (api_token, project_id, callback) {
                         }
                     }
                     if (flag === false) {
-                        members_obj.members.push({'name':member.person.name, 'unique_id': unique_id, 'stories': []});
+                        members_obj.members.push({'name':member.person.name, 'unique_id': unique_id, 'stories': week_array});
                     }
                 }
             }
