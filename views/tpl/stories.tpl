@@ -6,7 +6,6 @@
             <div class="user_stories" >
                 {{#each stories}}
                     <div id="{{id}}" class="user_story" difficulty="{{estimate}}" status="{{current_state}}" accepted_ts='{{ts}}' project_id="{{project_id}}" {{#if type}}type="week_indicator"{{/if}}>
-                        <span>{{name}}</span>
                         {{#if type}}
                             {{start_month_name}} {{start_day}} {{start_year}}
                         {{else}}
