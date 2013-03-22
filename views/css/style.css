@@ -510,7 +510,6 @@ header#main_header #logged_in_header.logged_in {
   font-size: 12px;
   background: #d6ffd6;
   border: 1px solid #99ff99;
-  display: none;
 }
 #user_columns .user_column .user_stories .user_story[status="accepted"].displayed {
   display: block;

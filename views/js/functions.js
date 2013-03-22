@@ -121,10 +121,21 @@ var getStories =function (api_token, project_id) {
                 var data = s;
                 var stories = data.story;
                 var iteration_count = stories.length;
+                function compare(a,b) {
+                  if (a.ts < b.ts) {
+                     return -1;
+                  } else if (a.ts > b.ts) {
+                    return 1;
+                  }
+                  return 0;
+                }
                 for (i=0; i < iteration_count; i++) {
                     var story = stories[i];
                     if (story.accepted_at) {
                         var time = new Date(story.accepted_at);
+                        story.ts = time.getTime();
+                    } else {
+                        var time = new Date();
                         story.ts = time.getTime();
                     }
                     if (story.owned_by) {
@@ -137,6 +148,7 @@ var getStories =function (api_token, project_id) {
                         var unique_id = member_obj.members[member_iteration].unique_id;
                         if (unique_id == member) {
                             member_obj.members[member_iteration].stories.push(story);
+                            member_obj.members[member_iteration].stories.sort(compare);
                         }
                     }
                 }
@@ -155,7 +167,7 @@ var getStories =function (api_token, project_id) {
                     });
                     $('#user_columns').fadeIn('slow');
                     statusMessage('');
-                    if (user_type === '') {
+                    if (user_type === 'pro') {
                         local.write('members', member_obj);
                     }
                 });
@@ -163,7 +175,7 @@ var getStories =function (api_token, project_id) {
         });
 };
 
-var getMembers = function (api_token, project_id) {
+var getMembers = function (api_token, project_id, callback) {
     var members_obj = local.get('members');
     var member_length = members_obj.members.length;
     $.ajax({
@@ -203,7 +215,7 @@ var getMembers = function (api_token, project_id) {
             }
             local.write('members', members_obj);
             statusMessage('');
-            getStories(api_token, project_id);
+            callback();
         }
     });
 };

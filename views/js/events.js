@@ -26,11 +26,11 @@ $('#main').on('click', '#logout', function () {
         $('.header_logo').removeClass('logged_in');
         closeSidebar();
         local.clear();
+        var members_obj = {};
+        members_obj.members = [];
+        local.write('members', members_obj);
         $('.login').removeClass('logged_in').removeClass('default');
     }, 400);
-    var members_obj = {};
-    members_obj.members = [];
-    local.write('members', members_obj);
 });
 
 $('#main').on('click', '#settings', function () {
@@ -46,7 +46,9 @@ $('.projects').on('click', '.project', function () {
     var project_id = $(this).attr('id');
     closeSidebar();
     var api_token = local.get('credentials').api_token;
-    getMembers(api_token, project_id);
+    getMembers(api_token, project_id, function () {
+        getStories(api_token, project_id);
+    });
 });
 
 
