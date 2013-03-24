@@ -17,8 +17,9 @@ $('#login_overlay').on('keyup', '#password:not(.active)', function (k) {
     }
 });
 
-$('#main').on('click', '#logout', function () {
+$('#main_header').on('click', '#logout', function () {
     $('#user_columns').fadeOut();
+    $('#user_columns_container').fadeOut();
     setTimeout(function () {
         $('#user_columns').html('');
         $('.projects').html('');
@@ -33,7 +34,7 @@ $('#main').on('click', '#logout', function () {
     }, 400);
 });
 
-$('#main').on('click', '#settings', function () {
+$('#main_header').on('click', '#settings', function () {
     if ($('.projects').hasClass('minimized')) {
         openSidebar();
     } else {

@@ -7,10 +7,17 @@ var resizeStuff = function () {
     console.log(size);
 };
 
-resizeStuff();
+// resizeStuff();
+
+$(window).on('scroll', function () {
+    var to_the_top = $('body').scrollTop();
+    $('#member_names').css({
+        'top': to_the_top + 30 + 'px'
+    });
+});
 
 $(window).resize(function () {
-    resizeStuff();
+    // resizeStuff();
 });
 
 if (local.get('credentials') === null) {
@@ -28,8 +35,3 @@ var members_obj = {};
 members_obj.members = [];
 local.write('members', members_obj);
 
-// statusMessage('loading page');
-
-// getProjects('353ddbae79fe8b53ddb36fbe5f389e68');
-
-// getMembers('353ddbae79fe8b53ddb36fbe5f389e68', '673099');

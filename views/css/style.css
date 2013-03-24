@@ -191,26 +191,14 @@ input.failure {
   background: #facccc;
 }
 
-#main {
-  min-height: 620px;
-  position: relative;
-}
-
-#user_container {
-  height: 620px;
-  overflow-x: auto;
-  -webkit-transition: width 0.5s;
-  -moz-transition: width 0.5s;
-  -o-transition: width 0.5s;
-  transition: width 0.5s;
-}
-#user_container.maximized {
-  width: 100%;
-}
-
 .projects {
-  height: 620px;
+  position: fixed;
+  right: 0px;
+  top: 30px;
+  bottom: 0;
+  overflow: auto;
   padding: 5px;
+  z-index: 5;
   background: #464646;
   -webkit-transition: width 0.5s;
   -moz-transition: width 0.5s;
@@ -275,7 +263,7 @@ input.failure {
 }
 
 #login_overlay {
-  z-index: 4;
+  z-index: 8;
   width: 0;
   height: 0;
   margin: 0 auto;
@@ -397,7 +385,7 @@ input.failure {
 }
 
 #status_message {
-  z-index: 3;
+  z-index: 8;
   width: 0;
   height: 0;
   margin: 0 auto;
@@ -434,6 +422,10 @@ header#main_header {
   font-size: 15px;
   padding: 7px 10px;
   font-weight: bold;
+  position: fixed;
+  width: 100%;
+  background: #555555;
+  z-index: 6;
 }
 header#main_header .header_logo {
   padding-left: 20px;
@@ -457,17 +449,41 @@ header#main_header #logged_in_header.logged_in {
   display: block;
 }
 
-#user_columns_container {
-  overflow-x: auto;
-  width: 100%;
+#member_names {
+  top: 30px;
+  width: 5000px;
+  position: absolute;
+  z-index: 5;
+  background: #444;
+  box-shadow: 0 0 5px #222222;
+}
+#member_names .member_column {
+  width: 250px;
+  display: none;
+  vertical-align: top;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1px;
+  padding: 2px 5px;
+  margin: 2px 1px 2px;
+  border: 1px solid #555555;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+}
+#member_names .member_column.active {
+  display: inline-block;
+}
+#member_names .member_column:last-of-type {
+  float: none;
 }
 
 #user_columns {
   display: none;
   width: 5000px;
-  height: 630px;
 }
 #user_columns .user_column {
+  padding-top: 55px;
   width: 250px;
   display: none;
   vertical-align: top;
@@ -494,6 +510,7 @@ header#main_header #logged_in_header.logged_in {
   border: 1px solid #efefef;
   display: block;
   position: relative;
+  font-size: 12px;
 }
 #user_columns .user_column .user_stories .user_story footer {
   font-size: 10px;
@@ -513,9 +530,10 @@ header#main_header #logged_in_header.logged_in {
   background: #7c7c7c;
   padding: 5px;
   color: #fff;
+  cursor: pointer;
 }
 #user_columns .user_column .user_stories .user_story[status="accepted"] {
-  font-size: 12px;
+  font-size: 11px;
   background: #d6ffd6;
   border: 1px solid #99ff99;
   display: none;
@@ -541,25 +559,25 @@ header#main_header #logged_in_header.logged_in {
   color: #fff;
 }
 #user_columns .user_column .user_stories .user_story[difficulty="1"] {
-  min-height: 35px;
-}
-#user_columns .user_column .user_stories .user_story[difficulty="2"] {
   min-height: 50px;
 }
-#user_columns .user_column .user_stories .user_story[difficulty="3"] {
+#user_columns .user_column .user_stories .user_story[difficulty="2"] {
   min-height: 75px;
 }
+#user_columns .user_column .user_stories .user_story[difficulty="3"] {
+  min-height: 95px;
+}
 #user_columns .user_column .user_stories .user_story[difficulty="4"] {
-  min-height: 90px;
+  min-height: 115px;
 }
 #user_columns .user_column .user_stories .user_story[difficulty="5"] {
-  min-height: 110px;
+  min-height: 135px;
 }
 #user_columns .user_column .user_stories .user_story[difficulty="6"] {
-  min-height: 140px;
+  min-height: 155px;
 }
 #user_columns .user_column .user_stories .user_story[difficulty="7"] {
-  min-height: 180px;
+  min-height: 175px;
 }
 #user_columns .user_column .user_stories .user_story[difficulty="8"] {
   min-height: 220px;

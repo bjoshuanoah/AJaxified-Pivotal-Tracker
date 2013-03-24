@@ -57,21 +57,14 @@ input {
     }
 }
 
-#main {
-    min-height: 620px;
-    position: relative;
-}
-#user_container {
-    height:620px;
-    overflow-x: auto;
-    @include transition(width .5s);
-    &.maximized {
-        width:100%;
-    }
-}
 .projects {
-    height:620px;
+    position: fixed;
+    right: 0px;
+    top: 30px;
+    bottom:0;
+    overflow: auto;
     padding:5px;
+    z-index: 5;
     background: rgba(70,70,70,1);
     @include transition(width .5s);
     &.minimized {
@@ -130,7 +123,7 @@ input {
 }
 
 #login_overlay {
-    z-index: 4;
+    z-index: 8;
     width:0;
     height:0;
     margin:0 auto;
@@ -247,7 +240,7 @@ input {
 }
 
 #status_message {
-    z-index: 3;
+    z-index: 8;
     width:0;
     height:0;
     margin:0 auto;
@@ -281,6 +274,10 @@ header#main_header {
     font-size: 15px;
     padding:7px 10px;
     font-weight: bold;
+    position: fixed;
+    width: 100%;
+    background: #555555;
+    z-index: 6;
     .header_logo {
         padding-left:20px;
         background: url('/img/favicon.png') no-repeat left;
@@ -303,16 +300,40 @@ header#main_header {
         }
     }
 }
-
-#user_columns_container {
-    overflow-x: auto;
-    width:100%;
+#member_names {
+    top:30px;
+    width: 5000px;
+    position: absolute;
+    z-index: 5;
+    background: #444;
+    box-shadow: 0 0 5px #222;
+    .member_column {
+        width:250px;
+        display: none;
+        vertical-align:top;
+        background:rgba(255,255,255,.1);
+        margin:1px;
+        padding:2px 5px;
+        margin: 2px 1px 2px;
+        border:1px solid #555;
+        position: relative;
+        color: #fff;
+        text-align: center;
+        font-size: 17px;
+        &.active {
+            display: inline-block;
+        }
+        &:last-of-type {
+            float: none;
+        }
+    }
 }
+
 #user_columns {
     display: none;
     width: 5000px;
-    height: 630px;
     .user_column {
+        padding-top:55px;
         width:250px;
         display: none;
         vertical-align:top;
@@ -339,6 +360,7 @@ header#main_header {
                 border:1px solid #efefef;
                 display: block;
                 position: relative;
+                font-size: 12px;
                 footer {
                     font-size: 10px;
                     background: rgba(255,255,255,.4);
@@ -357,9 +379,10 @@ header#main_header {
                     background: rgb(124, 124, 124);
                     padding: 5px;
                     color: #fff;
+                    cursor: pointer;
                 }
                 &[status="accepted"] {
-                    font-size: 12px;
+                    font-size: 11px;
                     background: lighten(#00ff00, 42%);
                     border:1px solid lighten(#00ff00, 30%);
                     display: none;
@@ -385,25 +408,25 @@ header#main_header {
                     color:#fff;
                 }
                 &[difficulty="1"] {
-                    min-height: 35px;
-                }
-                &[difficulty="2"] {
                     min-height: 50px;
                 }
-                &[difficulty="3"] {
+                &[difficulty="2"] {
                     min-height: 75px;
                 }
+                &[difficulty="3"] {
+                    min-height: 95px;
+                }
                 &[difficulty="4"] {
-                    min-height: 90px;
+                    min-height: 115px;
                 }
                 &[difficulty="5"] {
-                    min-height: 110px;
+                    min-height: 135px;
                 }
                 &[difficulty="6"] {
-                    min-height: 140px;
+                    min-height: 155px;
                 }
                 &[difficulty="7"] {
-                    min-height: 180px;
+                    min-height: 175px;
                 }
                 &[difficulty="8"] {
                     min-height: 220px;

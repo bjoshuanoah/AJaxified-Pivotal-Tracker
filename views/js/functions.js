@@ -92,12 +92,10 @@ var currentWeekNumber = function () {
 };
 
 var openSidebar = function () {
-    $('#user_container').removeClass('maximized');
     $('.projects').removeClass('minimized');
 };
 
 var closeSidebar = function () {
-    $('#user_container').addClass('maximized');
     $('.projects').addClass('minimized');
 };
 
@@ -201,7 +199,7 @@ var getStories =function (api_token, project_id) {
                     story.ts = time.getTime()/1000;
                 } else {
                     time = new Date();
-                    if (story.current_state === "started") {
+                    if (story.current_state === 'started' || story.current_state === 'finished' || story.current_state === 'delivered') {
                         story.ts = time.getTime()/1000;
                     } else {
                         story.ts = time.getTime()/1000 + 604800;
@@ -229,13 +227,17 @@ var getStories =function (api_token, project_id) {
                     var column = $(this);
                     var column_stories_length = $('.user_story:not([type="week_indicator"])', column).length;
                     if (column_stories_length > 0) {
+                        var member_id = column.attr('member_id');
+                        console.log(member_id);
                         column.addClass('active');
+                        $('.member_column[member_id="' + member_id + '"]').addClass('active');
                     }
                     var width = $('.user_column.active').length * 257;
                     $('#user_columns').outerWidth(width);
+                    $('#member_names').outerWidth(width);
                 });
                 $('#user_columns').fadeIn('slow');
-                var new_height = 0
+                var new_height = 0;
                 $('.user_column').each(function () {
                     var column = $(this);
                     var height = 0;
@@ -257,11 +259,10 @@ var getStories =function (api_token, project_id) {
                     }
                     $('.user_story[week_number="' + this_week + '"]', column).attr('week_height', height);
                     $('.user_story[week_number="' + next_week + '"]', column).attr('margin_top', height);
-                    console.log(next_week);
                     return new_height;
                 });
-                console.log(new_height);
-                var next_week = currentWeekNumber() + 1;
+                var this_week = currentWeekNumber();
+                var next_week = this_week + 1;
                 $('.user_story[week_number="' + next_week + '"]').each(function () {
                     var week = $(this),
                         this_week_height = week.attr('margin_top'),
@@ -270,8 +271,13 @@ var getStories =function (api_token, project_id) {
                         'margin-top': margin_top + 'px'
                     });
                 });
+                    $('body').animate({
+                        scrollTop: (this_week - 2) * 26 + 4 + 'px'
+                    });
+
             });
             statusMessage('');
+            $('#user_columns_container').fadeIn();
             if (user_type === 'pro') {
                 local.write('members', member_obj);
             }
@@ -317,6 +323,12 @@ var getMembers = function (api_token, project_id, callback) {
                     }
                 }
             }
+            console.log(members_obj);
+            $.get('/tpl/members.tpl', function (source) {
+                var template = Handlebars.compile(source);
+                var html = template(members_obj);
+                $('#member_names').html(html);
+            });
             local.write('members', members_obj);
             statusMessage('');
             callback();
