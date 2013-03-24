@@ -322,14 +322,19 @@ input.failure {
 #login_overlay .login .logo .gear.gear_2 {
   background: url(/img/gear_2.png);
   background-size: 100% 100%;
-  z-index: 7;
+  z-index: 6;
   top: 11%;
   left: 37%;
+  -webkit-animation: rotate_cc 20s infinite linear;
+  -moz-animation: rotate_cc 20s infinite linear;
+  -ms-animation: rotate_cc 20s infinite linear;
+  -o-animation: rotate_cc 20s infinite linear;
+  animation: rotate_cc 20s infinite linear;
 }
 #login_overlay .login .logo .gear.gear_3 {
   background: url(/img/gear_3.png);
   background-size: 100% 100%;
-  z-index: 6;
+  z-index: 4;
   top: -1%;
   left: 44%;
   -webkit-animation: rotate_cc 20s infinite linear;
