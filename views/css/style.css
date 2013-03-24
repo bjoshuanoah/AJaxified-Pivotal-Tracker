@@ -325,11 +325,11 @@ input.failure {
   z-index: 6;
   top: 11%;
   left: 37%;
-  -webkit-animation: rotate_cc 20s infinite linear;
-  -moz-animation: rotate_cc 20s infinite linear;
-  -ms-animation: rotate_cc 20s infinite linear;
-  -o-animation: rotate_cc 20s infinite linear;
-  animation: rotate_cc 20s infinite linear;
+  -webkit-animation: rotate_cc 15s infinite linear;
+  -moz-animation: rotate_cc 15s infinite linear;
+  -ms-animation: rotate_cc 15s infinite linear;
+  -o-animation: rotate_cc 15s infinite linear;
+  animation: rotate_cc 15s infinite linear;
 }
 #login_overlay .login .logo .gear.gear_3 {
   background: url(/img/gear_3.png);
@@ -337,11 +337,11 @@ input.failure {
   z-index: 4;
   top: -1%;
   left: 44%;
-  -webkit-animation: rotate_cc 20s infinite linear;
-  -moz-animation: rotate_cc 20s infinite linear;
-  -ms-animation: rotate_cc 20s infinite linear;
-  -o-animation: rotate_cc 20s infinite linear;
-  animation: rotate_cc 20s infinite linear;
+  -webkit-animation: rotate_cc 10s infinite linear;
+  -moz-animation: rotate_cc 10s infinite linear;
+  -ms-animation: rotate_cc 10s infinite linear;
+  -o-animation: rotate_cc 10s infinite linear;
+  animation: rotate_cc 10s infinite linear;
 }
 @media screen and (max-width: 723px) {
   #login_overlay .login .logo .gear {
@@ -459,6 +459,7 @@ header#main_header #logged_in_header.logged_in {
 #member_names {
   top: 30px;
   width: 5000px;
+  opacity: .9;
   position: absolute;
   z-index: 5;
   background: #444;
