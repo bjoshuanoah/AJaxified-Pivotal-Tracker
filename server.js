@@ -43,6 +43,10 @@ app.get('/', function (req, res) {
         res.render('index.html');
 });
 
+app.get('/google98b653ebf9aa4e44.html', function (req, res) {
+        res.render('google98b653ebf9aa4e44.html');
+});
+
 app.get('/projects', function (req, res) {
     var api_token = req.headers.api_token;
     pivotal.useToken(api_token);
