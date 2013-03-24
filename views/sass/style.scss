@@ -272,7 +272,7 @@ header#main_header {
     height: 30px;
     color: rgb(200,200,200);
     font-size: 15px;
-    padding:7px 10px;
+    padding:4px 10px;
     font-weight: bold;
     position: fixed;
     width: 100%;
@@ -280,6 +280,7 @@ header#main_header {
     z-index: 6;
     .header_logo {
         padding-left:20px;
+        font-size: 22px;
         background: url('/img/favicon.png') no-repeat left;
         cursor: default;
         display: none;
@@ -289,6 +290,7 @@ header#main_header {
     }
     #logged_in_header {
         display: none;
+        margin-top:3px;
         span {
             cursor: pointer;
             float: right;
