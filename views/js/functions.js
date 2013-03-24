@@ -23,6 +23,12 @@ function localConstructor() {
     };
 }
 
+var currentTimestamp = function () {
+    var curr_time = new Date(),
+    ts = curr_time.getTime()/1000;
+    return ts;
+};
+
 var local = new localConstructor();
 
 var weekToDate = function (year, week_number) {
@@ -56,18 +62,34 @@ var weekToDate = function (year, week_number) {
     date.end_year = end_year;
     date.start_day = day;
     date.end_day = end_day;
+    date.week_number = week_number;
     date.start_time_stamp = start_date.getTime()/1000 - (20 *(3600));
     date.ts = start_date.getTime()/1000 - (20 *(3600));
     date.type = 'week';
     date.end_time_stamp = end_date.getTime()/1000 + (4 * (3600)) - 1;
-
-    return date;
+    if (date.start_time_stamp < (currentTimestamp() + 604800)) {
+        return date;
+    } else {
+        return false;
+    }
 };
 var week_array = [];
 for (var week = 1; week < 53; week++) {
-    // week_array.push(weekToDate(2012, week));
-    week_array.push(weekToDate(2013, week));
-}
+    if (weekToDate(2013, week) !== false) {
+        week_array.push(weekToDate(2013, week));
+    }
+};
+
+var currentWeekNumber = function () {
+    var current_time = new Date();
+    current_ts = current_time.getTime()/1000;
+    for (i = 0; i < week_array.length; i++) {
+        if (week_array[i].start_time_stamp < current_ts && current_ts < week_array[i].end_time_stamp) {
+            var  current_week = week_array[i].week_number;
+        }
+    }
+    return current_week;
+};
 
 var openSidebar = function () {
     $('#user_container').removeClass('maximized');
@@ -147,77 +169,114 @@ var getStories =function (api_token, project_id) {
     var member_length = member_obj.members.length;
     console.log(member_obj, member_length);
     $.ajax({
-            type: 'GET',
-            url: '/stories',
-            beforeSend: function(xhr){
-                 xhr.setRequestHeader('api_token', api_token);
-                xhr.setRequestHeader('project_id', project_id);
-                statusMessage('Loading Stories');
-            },
-            error: function (e) {
-                console.log('error', e);
-                console.log(e.responseText);
-                console.log(e.statusText);
-                console.log(e.status);
-            },
-            success: function (s) {
-                console.log('success', s);
-                var data = s;
-                var stories = data.story;
-                var iteration_count = stories.length;
-                function compare(a,b) {
-                  if (a.ts < b.ts) {
-                     return -1;
-                  } else if (a.ts > b.ts) {
-                    return 1;
-                  }
-                  return 0;
-                }
-                for (i=0; i < iteration_count; i++) {
-                    var story = stories[i], time;
-                    if (story.accepted_at) {
-                        time = new Date(story.accepted_at);
-                        story.ts = time.getTime()/1000;
-                    } else {
-                        time = new Date();
-                        story.ts = time.getTime()/1000;
-                    }
-                    if (story.owned_by) {
-                        story.unique_id = story.owned_by.replace(/ /g, '');
-                    } else {
-                        story.unique_id = 'nya';
-                    }
-                    var member = story.unique_id;
-                    for (var member_iteration = 0; member_iteration < member_length; member_iteration++) {
-                        var unique_id = member_obj.members[member_iteration].unique_id;
-                        if (unique_id == member) {
-                            member_obj.members[member_iteration].stories.push(story);
-                            member_obj.members[member_iteration].stories.sort(compare);
-                        }
-                    }
-                }
-                $.get('/tpl/stories.tpl', function (source) {
-                    var template = Handlebars.compile(source);
-                    var html = template(member_obj);
-                    $('#user_columns').html(html);
-
-                    $('.user_column').each(function () {
-                        var column = $(this);
-                        var column_stories_length = $('.user_story:not([type="week_indicator"])', column).length;
-                        if (column_stories_length > 0) {
-                            column.addClass('active');
-                        }
-                        var width = $('.user_column.active').length * 257;
-                        $('#user_columns').outerWidth(width);
-                    });
-                    $('#user_columns').fadeIn('slow');
-                    statusMessage('');
-                    if (user_type === 'pro') {
-                        local.write('members', member_obj);
-                    }
-                });
+        type: 'GET',
+        url: '/stories',
+        beforeSend: function(xhr){
+             xhr.setRequestHeader('api_token', api_token);
+            xhr.setRequestHeader('project_id', project_id);
+            statusMessage('Loading Stories');
+        },
+        error: function (e) {
+            console.log('error', e);
+            console.log(e.responseText);
+            console.log(e.statusText);
+            console.log(e.status);
+        },
+        success: function (s) {
+            var data = s;
+            var stories = data.story;
+            var iteration_count = stories.length;
+            function compare(a,b) {
+              if (a.ts < b.ts) {
+                 return -1;
+              } else if (a.ts > b.ts) {
+                return 1;
+              }
+              return 0;
             }
-        });
+            for (i=0; i < iteration_count; i++) {
+                var story = stories[i], time;
+                if (story.accepted_at) {
+                    time = new Date(story.accepted_at);
+                    story.ts = time.getTime()/1000;
+                } else {
+                    time = new Date();
+                    if (story.current_state === "started") {
+                        story.ts = time.getTime()/1000;
+                    } else {
+                        story.ts = time.getTime()/1000 + 604800;
+                    }
+                }
+                if (story.owned_by) {
+                    story.unique_id = story.owned_by.replace(/ /g, '');
+                } else {
+                    story.unique_id = 'nya';
+                }
+                var member = story.unique_id;
+                for (var member_iteration = 0; member_iteration < member_length; member_iteration++) {
+                    var unique_id = member_obj.members[member_iteration].unique_id;
+                    if (unique_id == member) {
+                        member_obj.members[member_iteration].stories.push(story);
+                        member_obj.members[member_iteration].stories.sort(compare);
+                    }
+                }
+            }
+            $.get('/tpl/stories.tpl', function (source) {
+                var template = Handlebars.compile(source);
+                var html = template(member_obj);
+                $('#user_columns').html(html);
+                $('.user_column').each(function () {
+                    var column = $(this);
+                    var column_stories_length = $('.user_story:not([type="week_indicator"])', column).length;
+                    if (column_stories_length > 0) {
+                        column.addClass('active');
+                    }
+                    var width = $('.user_column.active').length * 257;
+                    $('#user_columns').outerWidth(width);
+                });
+                $('#user_columns').fadeIn('slow');
+                var new_height = 0
+                $('.user_column').each(function () {
+                    var column = $(this);
+                    var height = 0;
+                    var this_week = currentWeekNumber();
+                    var next_week = this_week + 1;
+                    var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
+                    var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
+                    $('.user_story', column).each(function () {
+                        var story = $(this);
+                        var ts = story.attr('accepted_ts');
+                        if (this_week_start_ts < ts && ts < this_week_end_ts) {
+                            height = story.outerHeight() + height + 2;
+                            story.addClass('displayed');
+                            return height;
+                        }
+                    });
+                    if (height > new_height) {
+                        new_height = height;
+                    }
+                    $('.user_story[week_number="' + this_week + '"]', column).attr('week_height', height);
+                    $('.user_story[week_number="' + next_week + '"]', column).attr('margin_top', height);
+                    console.log(next_week);
+                    return new_height;
+                });
+                console.log(new_height);
+                var next_week = currentWeekNumber() + 1;
+                $('.user_story[week_number="' + next_week + '"]').each(function () {
+                    var week = $(this),
+                        this_week_height = week.attr('margin_top'),
+                        margin_top = new_height - this_week_height + 2;
+                    week.animate({
+                        'margin-top': margin_top + 'px'
+                    });
+                });
+            });
+            statusMessage('');
+            if (user_type === 'pro') {
+                local.write('members', member_obj);
+            }
+        }
+    });
 };
 
 var getMembers = function (api_token, project_id, callback) {

@@ -362,7 +362,7 @@ header#main_header {
                     font-size: 12px;
                     background: lighten(#00ff00, 42%);
                     border:1px solid lighten(#00ff00, 30%);
-                    // display: none;
+                    display: none;
                     &.displayed {
                         display: block;
                     }

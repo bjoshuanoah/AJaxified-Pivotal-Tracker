@@ -13,7 +13,7 @@ $(window).resize(function () {
     resizeStuff();
 });
 
-if (local.get('credentials') == null) {
+if (local.get('credentials') === null) {
     $('.login').removeClass('default');
     $('#logged_in_header').removeClass('logged_in');
     $('.header_logo').removeClass('logged_in');
