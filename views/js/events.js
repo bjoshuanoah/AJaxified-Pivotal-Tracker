@@ -52,6 +52,43 @@ $('.projects').on('click', '.project', function () {
     });
 });
 
+$('#user_columns').on('click', '.user_story[type="week_indicator"]', function () {
+    var week = $(this);
+    var new_height = 0;
+    var this_week = week.attr('week_number');
+    var next_week = (this_week*1) + 1;
+    console.log(this_week, next_week);
+    $('.user_column').each(function () {
+        var column = $(this);
+        var height = 0;
+        var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
+        var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
+        console.log(this_week_start_ts, this_week_end_ts);
+        $('.user_story', column).each(function () {
+            var story = $(this);
+            var ts = story.attr('accepted_ts');
+            if (this_week_start_ts < ts && ts < this_week_end_ts) {
+                height = story.outerHeight() + height + 2;
+                story.addClass('displayed');
+                return height;
+            }
+        });
+        if (height > new_height) {
+            new_height = height;
+        }
+        $('.user_story[week_number="' + this_week + '"]', column).attr('week_height', height);
+        $('.user_story[week_number="' + next_week + '"]', column).attr('margin_top', height);
+        return new_height;
+    });
+    $('.user_story[week_number="' + next_week + '"]').each(function () {
+        var week = $(this),
+            this_week_height = week.attr('margin_top'),
+            margin_top = new_height - this_week_height + 2;
+        week.animate({
+            'margin-top': margin_top + 'px'
+        });
+    });
+});
 
 
 

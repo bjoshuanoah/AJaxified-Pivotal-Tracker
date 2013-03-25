@@ -271,9 +271,9 @@ var getStories =function (api_token, project_id) {
                         'margin-top': margin_top + 'px'
                     });
                 });
-                    $('body').animate({
-                        scrollTop: (this_week - 2) * 26 + 4 + 'px'
-                    });
+                $('body').animate({
+                    scrollTop: (this_week - 2) * 26 + 4 + 'px'
+                });
 
             });
             statusMessage('');
