@@ -151,7 +151,6 @@ var getProjects = function (api_token) {
         success: function (s) {
             statusMessage('');
             openSidebar();
-            console.log('success', s);
             var data = s;
             $.get('/tpl/projects.tpl', function (source) {
                  var template = Handlebars.compile(source);
@@ -165,7 +164,6 @@ var getProjects = function (api_token) {
 var getStories =function (api_token, project_id) {
     var member_obj = local.get('members');
     var member_length = member_obj.members.length;
-    console.log(member_obj, member_length);
     $.ajax({
         type: 'GET',
         url: '/stories',
@@ -228,7 +226,6 @@ var getStories =function (api_token, project_id) {
                     var column_stories_length = $('.user_story:not([type="week_indicator"])', column).length;
                     if (column_stories_length > 0) {
                         var member_id = column.attr('member_id');
-                        console.log(member_id);
                         column.addClass('active');
                         $('.member_column[member_id="' + member_id + '"]').addClass('active');
                     }
@@ -274,6 +271,30 @@ var getStories =function (api_token, project_id) {
                 $('body').animate({
                     scrollTop: (this_week - 2) * 26 + 4 + 'px'
                 });
+                $('.user_column.active').each(function () {
+                    var column = $(this);
+                    var height = 0;
+                    var count = $('.user_story[type="week_indicator"]', column).length - 1;
+                    for (var i = 1; i < count; i++) {
+                        var new_estimate = 0;
+                        var this_week = i;
+                        var next_week = this_week + 1;
+                        var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
+                        var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
+                        $('.user_story', column).each(function () {
+                            var story = $(this);
+                            var ts = story.attr('accepted_ts');
+                            if (this_week_start_ts < ts && ts < this_week_end_ts) {
+                                var estimate = $('.estimate', story).text() * 1;
+                                if (estimate > -1) {
+                                    new_estimate = estimate + new_estimate;
+                                    return new_estimate;
+                                }
+                            }
+                        });
+                        $('.user_story[week_number="' + this_week + '"] .personal_velocity', column).text(new_estimate);
+                    }
+                });
 
             });
             statusMessage('');
@@ -303,7 +324,6 @@ var getMembers = function (api_token, project_id, callback) {
             console.log(e.status);
         },
         success: function (s) {
-            console.log('success', s);
             var data = s;
             var members = data.membership;
             var member_count = members.length;
@@ -323,7 +343,6 @@ var getMembers = function (api_token, project_id, callback) {
                     }
                 }
             }
-            console.log(members_obj);
             $.get('/tpl/members.tpl', function (source) {
                 var template = Handlebars.compile(source);
                 var html = template(members_obj);

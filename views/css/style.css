@@ -520,6 +520,10 @@ header#main_header #logged_in_header.logged_in {
   position: relative;
   font-size: 12px;
 }
+#user_columns .user_column .user_stories .user_story .personal_velocity {
+  float: right;
+  padding-right: 20px;
+}
 #user_columns .user_column .user_stories .user_story footer {
   font-size: 10px;
   background: rgba(255, 255, 255, 0.4);

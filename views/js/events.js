@@ -83,13 +83,11 @@ $('#user_columns').on('click', '.user_story[type="week_indicator"]', function ()
     } else {
         week.addClass('active');
         var new_height = 0;
-        console.log(this_week, next_week);
         $('.user_column').each(function () {
             var column = $(this);
             var height = 0;
             var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
             var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
-            console.log(this_week_start_ts, this_week_end_ts);
             $('.user_story', column).each(function () {
                 var story = $(this);
                 var ts = story.attr('accepted_ts');
