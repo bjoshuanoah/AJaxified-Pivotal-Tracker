@@ -62,7 +62,7 @@ app.post('/login', function (req, res) {
             console.log(username, password);
 	pivotal.getToken(username, password, function (err, ret) {
             if (!ret) {
-                res.json(403, "Usename or Password do not match");
+                res.json(403, "Username or Password do not match");
             } else {
                 res.send(ret);
             }
@@ -83,7 +83,11 @@ app.get('/stories', function (req, res) {
     var project_id = req.headers.project_id;
     pivotal.useToken(api_token);
     pivotal.getStories([project_id], {}, function (err, ret) {
-        res.send(ret);
+        if (!ret) {
+            res.json(403, "Something went wrong. Try again!");
+        } else {
+            res.send(ret);
+        }
     });
 });
 

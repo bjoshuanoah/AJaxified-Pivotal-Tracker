@@ -173,10 +173,8 @@ var getStories =function (api_token, project_id) {
             statusMessage('Loading Stories');
         },
         error: function (e) {
-            console.log('error', e);
-            console.log(e.responseText);
-            console.log(e.statusText);
-            console.log(e.status);
+            statusMessage(e.responseText);
+            openSidebar();
         },
         success: function (s) {
             var data = s;
