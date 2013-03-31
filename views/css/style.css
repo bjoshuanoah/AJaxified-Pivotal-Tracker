@@ -234,6 +234,10 @@ input.failure {
   background: #454545;
   cursor: pointer;
 }
+.projects .project.selected {
+  background: #272727;
+  cursor: pointer;
+}
 .projects .project header {
   padding: 5px;
   font-size: 20px;

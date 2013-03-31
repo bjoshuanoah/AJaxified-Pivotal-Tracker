@@ -92,6 +92,10 @@ input {
             background: #454545;
             cursor: pointer;
         }
+        &.selected {
+            background: rgb(39,39,39);
+            cursor: pointer;
+        }
         header {
             padding:5px;
             font-size: 20px;
