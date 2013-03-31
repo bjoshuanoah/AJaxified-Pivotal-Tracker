@@ -115,9 +115,9 @@ $('#user_columns').on('click', '.user_story[type="week_indicator"]', function ()
     }
 });
 
-
-
-
+$('#install').on('touchend', function () {
+    $(this).fadeOut();
+});
 
 
 

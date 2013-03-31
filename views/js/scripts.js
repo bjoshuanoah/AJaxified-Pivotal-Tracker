@@ -1,13 +1,6 @@
-var resizeStuff = function () {
-    var size = window.innerHeight;
-    $('#main').css({'min-height': size + 'px'});
-    $('#user_columns').css({'min-height': size - 30 + 'px'});
-    $('#user_container').css({'min-height': size + 'px'});
-    $('.projects').css({'min-height': size + 'px'});
-    console.log(size);
-};
-
-// resizeStuff();
+if (window.navigator.platform === 'iPad' && window.navigator.standalone !== true ) {
+    $('#install').fadeIn('slow');
+}
 
 $(window).on('scroll', function () {
     var to_the_top = $('body').scrollTop();
@@ -16,9 +9,6 @@ $(window).on('scroll', function () {
     });
 });
 
-$(window).resize(function () {
-    // resizeStuff();
-});
 
 if (local.get('credentials') === null) {
     $('.login').removeClass('default');

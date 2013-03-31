@@ -449,7 +449,51 @@ header#main_header {
     }
 }
 
-
+#install {
+    display: block;
+    position: fixed;
+    z-index: 8;
+    width: 207px;
+    background: #555;
+    border: 2px solid #777;
+    border-radius: 3px;
+    top: 16px;
+    left: 40px;
+    padding: 5px 5px 5px 71px;
+    color: #fff;
+    font-weight: bold;
+    display: none;
+    &:after {
+        display: block;
+        content: '';
+        width:0;
+        height:0;
+        border: 10px solid transparent;
+        border-bottom:10px solid #555;
+        position: absolute;
+        top: -19px;
+        left:150px;
+    }
+    &:before {
+        display: block;
+        content: '';
+        width:0;
+        height:0;
+        border: 10px solid transparent;
+        border-bottom:10px solid #777;
+        position: absolute;
+        top: -22px;
+        left:150px;
+    }
+    img {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 56px;
+        box-shadow: 0 0 6px #000;
+        border-radius: 6px;
+    }
+}
 
 
 
