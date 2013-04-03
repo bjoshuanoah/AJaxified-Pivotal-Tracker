@@ -43,13 +43,25 @@ $('#main_header').on('click', '#settings', function () {
 });
 
 $('.projects').on('click', '.project', function () {
-    $(this).addClass('selected');
-    var project_id = $(this).attr('id');
-    closeSidebar();
-    var api_token = local.get('credentials').api_token;
-    getMembers(api_token, project_id, function () {
-        getStories(api_token, project_id);
-    });
+    var project = $(this);
+    if (project.hasClass('added')) {
+        var id = project.attr('id');
+        if (project.hasClass('selected')) {
+            project.removeClass('selected');
+            $('.user_story[project_id="' + id + '"]').addClass('selected').removeClass('displayed');
+        } else {
+            project.addClass('selected');
+            $('.user_story[project_id="' + id + '"]').removeClass('selected').addClass('displayed');
+        }
+    } else {
+        project.addClass('selected').addClass('added');
+        var project_id = $(this).attr('id');
+        closeSidebar();
+        var api_token = local.get('credentials').api_token;
+        getMembers(api_token, project_id, function () {
+            getStories(api_token, project_id);
+        });
+    }
 });
 
 $('#user_columns').on('click', '.user_story[type="week_indicator"]', function () {
@@ -91,7 +103,7 @@ $('#user_columns').on('click', '.user_story[type="week_indicator"]', function ()
             $('.user_story', column).each(function () {
                 var story = $(this);
                 var ts = story.attr('accepted_ts');
-                if (this_week_start_ts < ts && ts < this_week_end_ts) {
+                if (this_week_start_ts < ts && ts < this_week_end_ts && story.hasClass('selected')) {
                     height = story.outerHeight() + height + 2;
                     story.addClass('displayed');
                     return height;

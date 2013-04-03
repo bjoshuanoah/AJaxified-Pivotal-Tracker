@@ -5,7 +5,7 @@
         <div class="user_column" member_id="{{unique_id}}">
             <div class="user_stories" >
                 {{#each stories}}
-                    <div id="{{id}}" class="user_story" difficulty="{{estimate}}" status="{{current_state}}" accepted_ts='{{ts}}' project_id="{{project_id}}" {{#if type}}type="week_indicator" week_number="{{week_number}}"{{/if}}>
+                    <div id="{{id}}" class="user_story selected" difficulty="{{estimate}}" status="{{current_state}}" accepted_ts='{{ts}}' project_id="{{project_id}}" {{#if type}}type="week_indicator" week_number="{{week_number}}"{{/if}}>
                         {{#if type}}
                             <span class="date">{{start_month_name}} {{start_day}} {{start_year}}</span><span class="personal_velocity"></span>
                         {{else}}

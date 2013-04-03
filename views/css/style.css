@@ -499,7 +499,6 @@ header#main_header #logged_in_header.logged_in {
   width: 250px;
   display: none;
   vertical-align: top;
-  min-height: 630px;
   background: rgba(255, 255, 255, 0.1);
   margin: 1px;
 }
@@ -523,6 +522,7 @@ header#main_header #logged_in_header.logged_in {
   display: block;
   position: relative;
   font-size: 12px;
+  display: none;
 }
 #user_columns .user_column .user_stories .user_story .personal_velocity {
   float: right;
@@ -547,15 +547,12 @@ header#main_header #logged_in_header.logged_in {
   padding: 5px;
   color: #fff;
   cursor: pointer;
+  display: block;
 }
 #user_columns .user_column .user_stories .user_story[status="accepted"] {
   font-size: 11px;
   background: #d6ffd6;
   border: 1px solid #99ff99;
-  display: none;
-}
-#user_columns .user_column .user_stories .user_story[status="accepted"].displayed {
-  display: block;
 }
 #user_columns .user_column .user_stories .user_story[status="rejected"] {
   background: #ffe5e5;
@@ -597,6 +594,9 @@ header#main_header #logged_in_header.logged_in {
 }
 #user_columns .user_column .user_stories .user_story[difficulty="8"] {
   min-height: 220px;
+}
+#user_columns .user_column .user_stories .user_story.displayed {
+  display: block;
 }
 
 #install {

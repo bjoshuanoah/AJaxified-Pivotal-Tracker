@@ -272,14 +272,14 @@ var getStories =function (api_token, project_id) {
                 $('.user_column.active').each(function () {
                     var column = $(this);
                     var height = 0;
-                    var count = $('.user_story[type="week_indicator"]', column).length - 1;
+                    var count = $('.user_story[type="week_indicator"]', column).length;
                     for (var i = 1; i < count; i++) {
                         var new_estimate = 0;
                         var this_week = i;
                         var next_week = this_week + 1;
                         var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
                         var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
-                        $('.user_story', column).each(function () {
+                        $('.user_story[status="accepted"]', column).each(function () {
                             var story = $(this);
                             var ts = story.attr('accepted_ts');
                             if (this_week_start_ts < ts && ts < this_week_end_ts) {
