@@ -183,8 +183,19 @@
   position: relative;
 }
 
+@media screen and (max-width: 767px) {
+  html {
+    height: 100%;
+  }
+}
+
 body {
   background: #383838;
+}
+@media screen and (max-width: 767px) {
+  body {
+    height: 100%;
+  }
 }
 
 input.failure {
@@ -216,7 +227,7 @@ input.failure {
   padding: 5px 5px 20px;
   margin: 2px 0 2px;
   background: #333;
-  border: 1px solid #555555;
+  border: 1px solid #555;
   display: block;
   position: relative;
   color: #fff;
@@ -242,7 +253,7 @@ input.failure {
   padding: 5px;
   font-size: 20px;
   line-height: 20px;
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid #444;
   font-weight: bold;
   margin-bottom: 5px;
   cursor: pointer;
@@ -272,6 +283,11 @@ input.failure {
   height: 0;
   margin: 0 auto;
 }
+@media screen and (max-width: 767px) {
+  #login_overlay {
+    width: 100%;
+  }
+}
 #login_overlay .login {
   color: #fff;
   width: 486px;
@@ -288,6 +304,23 @@ input.failure {
   transition: top 0.5s;
   border-radius: 3px;
 }
+@media screen and (max-width: 767px) {
+  #login_overlay .login {
+    width: auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    background: transparent;
+    border: transparent;
+    padding-top: 68px;
+  }
+}
+@media screen and (max-width: 767px) {
+  #login_overlay .login .logo {
+    width: 175px !important;
+    margin: 0 auto;
+  }
+}
 #login_overlay .login .logo .logo_text {
   font-size: 32px;
   line-height: 30px;
@@ -295,14 +328,9 @@ input.failure {
   position: absolute;
   top: 88px;
 }
-@media screen and (max-width: 723px) {
+@media screen and (max-width: 767px) {
   #login_overlay .login .logo .logo_text {
-    font-size: 46px;
-    line-height: 39px;
-    text-align: left;
-    top: 30px;
-    left: 193px;
-    width: 150px;
+    display: none;
   }
 }
 #login_overlay .login .logo .gear {
@@ -347,7 +375,7 @@ input.failure {
   -o-animation: rotate_cc 10s infinite linear;
   animation: rotate_cc 10s infinite linear;
 }
-@media screen and (max-width: 723px) {
+@media screen and (max-width: 767px) {
   #login_overlay .login .logo .gear {
     width: 105px;
     height: 105px;
@@ -356,17 +384,17 @@ input.failure {
     left: 3%;
   }
   #login_overlay .login .logo .gear.gear_2 {
-    left: 14%;
-    top: 14%;
+    left: 26%;
+    top: 22%;
   }
   #login_overlay .login .logo .gear.gear_3 {
-    left: 20%;
+    left: 44%;
   }
 }
 #login_overlay .login .logo img {
   opacity: 0;
 }
-@media screen and (max-width: 723px) {
+@media screen and (max-width: 767px) {
   #login_overlay .login .logo img {
     height: 131px;
   }
@@ -387,10 +415,10 @@ input.failure {
   margin-bottom: 0;
 }
 #login_overlay .login.logged_in {
-  top: -250px;
+  top: -1000px;
 }
 #login_overlay .login.default {
-  top: -250px;
+  top: -1000px;
 }
 
 #status_message {
@@ -412,9 +440,9 @@ input.failure {
   font-size: 15px;
   line-height: 18px;
   padding-top: 6px;
-  border-left: 1px solid #444444;
-  border-right: 1px solid #444444;
-  border-bottom: 1px solid #444444;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  border-bottom: 1px solid #444;
   -webkit-transition: top 0.3s;
   -moz-transition: top 0.3s;
   -o-transition: top 0.3s;
@@ -439,12 +467,19 @@ header#main_header {
 header#main_header .header_logo {
   padding-left: 20px;
   font-size: 22px;
+  line-height: 22px;
   background: url("/img/favicon.png") no-repeat left;
   cursor: default;
-  display: none;
 }
 header#main_header .header_logo.logged_in {
-  display: block;
+  font-size: 14px;
+  line-height: 22px;
+}
+@media screen and (max-width: 767px) {
+  header#main_header .header_logo {
+    width: 50% !important;
+    float: left;
+  }
 }
 header#main_header #logged_in_header {
   display: none;
@@ -459,6 +494,15 @@ header#main_header #logged_in_header span {
 header#main_header #logged_in_header.logged_in {
   display: block;
 }
+@media screen and (max-width: 767px) {
+  header#main_header #logged_in_header {
+    width: 50% !important;
+    float: left;
+  }
+  header#main_header #logged_in_header span {
+    font-size: 14px;
+  }
+}
 
 #member_names {
   top: 30px;
@@ -467,17 +511,17 @@ header#main_header #logged_in_header.logged_in {
   position: absolute;
   z-index: 5;
   background: #444;
-  box-shadow: 0 0 5px #222222;
+  box-shadow: 0 0 5px #222;
 }
 #member_names .member_column {
-  width: 250px;
+  width: 320px;
   display: none;
   vertical-align: top;
   background: rgba(255, 255, 255, 0.1);
   margin: 1px;
   padding: 2px 5px;
   margin: 2px 1px 2px;
-  border: 1px solid #555555;
+  border: 1px solid #555;
   position: relative;
   color: #fff;
   text-align: center;
@@ -496,7 +540,7 @@ header#main_header #logged_in_header.logged_in {
 }
 #user_columns .user_column {
   padding-top: 55px;
-  width: 250px;
+  width: 320px;
   display: none;
   vertical-align: top;
   background: rgba(255, 255, 255, 0.1);
@@ -540,7 +584,7 @@ header#main_header #logged_in_header.logged_in {
   left: 0;
 }
 #user_columns .user_column .user_stories .user_story[type="week_indicator"] {
-  width: 256px;
+  width: 326px;
   left: -4px;
   border: 0;
   background: #7c7c7c;
@@ -605,7 +649,7 @@ header#main_header #logged_in_header.logged_in {
   z-index: 8;
   width: 207px;
   background: #555;
-  border: 2px solid #777777;
+  border: 2px solid #777;
   border-radius: 3px;
   top: 16px;
   left: 40px;
@@ -620,7 +664,7 @@ header#main_header #logged_in_header.logged_in {
   width: 0;
   height: 0;
   border: 10px solid transparent;
-  border-bottom: 10px solid #555555;
+  border-bottom: 10px solid #555;
   position: absolute;
   top: -19px;
   left: 150px;
@@ -631,7 +675,7 @@ header#main_header #logged_in_header.logged_in {
   width: 0;
   height: 0;
   border: 10px solid transparent;
-  border-bottom: 10px solid #777777;
+  border-bottom: 10px solid #777;
   position: absolute;
   top: -22px;
   left: 150px;
@@ -641,6 +685,6 @@ header#main_header #logged_in_header.logged_in {
   left: 5px;
   top: 5px;
   width: 56px;
-  box-shadow: 0 0 6px black;
+  box-shadow: 0 0 6px #000;
   border-radius: 6px;
 }

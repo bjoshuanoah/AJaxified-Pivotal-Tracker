@@ -227,9 +227,8 @@ var getStories =function (api_token, project_id) {
                         column.addClass('active');
                         $('.member_column[member_id="' + member_id + '"]').addClass('active');
                     }
-                    var width = $('.user_column.active').length * 257;
-                    $('#user_columns').outerWidth(width);
-                    $('#member_names').outerWidth(width);
+                    var width = $('.user_column.active').length * 327;
+                    $('#user_columns, #member_names').outerWidth(width);
                 });
                 $('#user_columns').fadeIn('slow');
                 var new_height = 0;
