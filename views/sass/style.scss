@@ -313,13 +313,16 @@ header#main_header {
         line-height: 22px;
         background: url('/img/favicon.png') no-repeat left;
         cursor: default;
+        display: none;
         &.logged_in {
-            font-size: 14px;
-            line-height: 22px;
+            display: block;
         }
         @media screen and (max-width: 767px) {
             width: 50% !important;
             float:left;
+            line-height: 22px;
+            font-size: 14px;
+            display: block;
         }
     }
     #logged_in_header {
