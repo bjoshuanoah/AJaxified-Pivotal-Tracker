@@ -13,6 +13,7 @@ $('#login_overlay').on('keyup', '#password:not(.active)', function (k) {
             var api_token = local.get('credentials').api_token;
             getProjects(api_token);
             $('.header_logo').addClass('logged_in');
+            ga('send', 'pageview', '/in');
         });
     }
 });
@@ -32,6 +33,7 @@ $('#main_header').on('click', '#logout', function () {
         local.write('members', members_obj);
         $('.login').removeClass('logged_in').removeClass('default');
     }, 400);
+    ga('send', 'pageview', '/logged_out');
 });
 
 $('#main_header').on('click', '#settings', function () {
@@ -55,12 +57,14 @@ $('.projects').on('click', '.project', function () {
         }
     } else {
         project.addClass('selected').addClass('added');
-        var project_id = $(this).attr('id');
+        var project_id = project.attr('id');
+        var project_name = $('header', project).text().replace(/[^\w]|_/g, "");
         closeSidebar();
         var api_token = local.get('credentials').api_token;
         getMembers(api_token, project_id, function () {
             getStories(api_token, project_id);
         });
+        ga('send', 'pageview', '/projects/' + project_name);
     }
 });
 
@@ -75,7 +79,6 @@ $('#user_columns').on('click', '.user_story[type="week_indicator"]', function ()
             var height = 0;
             var this_week_start_ts = $('.user_story[week_number="' + this_week + '"]', column).attr('accepted_ts');
             var this_week_end_ts = $('.user_story[week_number="' + next_week + '"]', column).attr('accepted_ts');
-            console.log(this_week_start_ts, this_week_end_ts);
             $('.user_story', column).each(function () {
                 var story = $(this);
                 var ts = story.attr('accepted_ts');
@@ -124,11 +127,13 @@ $('#user_columns').on('click', '.user_story[type="week_indicator"]', function ()
                 'margin-top': margin_top + 'px'
             });
         });
+        ga('send', 'event', 'week_view', 'clicked');
     }
 });
 
 $('#install').on('touchend', function () {
     $(this).fadeOut();
+    ga('send', 'event', 'iOS_install', 'clicked');
 });
 
 

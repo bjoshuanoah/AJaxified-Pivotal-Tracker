@@ -19,6 +19,7 @@ if (local.get('credentials') === null) {
     $('#logged_in_header').addClass('logged_in');
     var api_token = local.get('credentials').api_token;
     getProjects(api_token);
+    ga('send', 'pageview', '/in');
 }
 
 var members_obj = {};

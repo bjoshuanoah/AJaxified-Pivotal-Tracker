@@ -2,9 +2,7 @@
 {{#if project.length}}
     {{#each project}}
         <div class="project" id="{{id}}">
-            <header>
-                {{name}}
-            </header>
+            <header>{{name}}</header>
             <div>
                 <div class="info">
                     <span class="value">{{current_iteration_number}}</span><span class="key">Current Iteration:</span>
@@ -24,9 +22,7 @@
 {{else}}
     {{#if project.id}}
         <div class="project" id="{{project.id}}">
-            <header>
-                {{project.name}}
-            </header>
+            <header>{{project.name}}</header>
             <div>
                 <div class="info">
                     <span class="value">{{project.current_iteration_number}}</span><span class="key">Current Iteration:</span>
