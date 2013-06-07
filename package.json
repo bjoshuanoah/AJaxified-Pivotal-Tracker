@@ -18,5 +18,9 @@
     "async": "*",
     "colors": "*",
     "curlrequest": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bjoshuanoah/AJaxified-Pivotal-Tracker.git"
   }
 }
