@@ -3,8 +3,8 @@
   "description": "Pivotal tracker api",
   "version": "0.0.1",
   "engines": {
-    "node": "0.8.x",
-    "npm":  "1.1.x"
+    "node": "0.10.5",
+    "npm":  "1.2.x"
   },
   "scripts": {
     "start": "node server.js"
