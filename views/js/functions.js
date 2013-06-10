@@ -168,7 +168,7 @@ var getStories =function (api_token, project_id) {
         type: 'GET',
         url: '/stories',
         beforeSend: function(xhr){
-             xhr.setRequestHeader('api_token', api_token);
+            xhr.setRequestHeader('api_token', api_token);
             xhr.setRequestHeader('project_id', project_id);
             statusMessage('Loading Stories');
         },
@@ -195,7 +195,7 @@ var getStories =function (api_token, project_id) {
                     story.ts = time.getTime()/1000;
                 } else {
                     time = new Date();
-                    if (story.current_state === 'started' || story.current_state === 'finished' || story.current_state === 'delivered') {
+                    if (story.current_state === 'started' || story.current_state === 'unstarted' || story.current_state === 'finished' || story.current_state === 'delivered') {
                         story.ts = time.getTime()/1000;
                     } else {
                         story.ts = time.getTime()/1000 + 604800;
