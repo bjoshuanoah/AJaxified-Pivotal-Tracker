@@ -69,7 +69,10 @@
 
 		  ga('create', 'UA-39423507-3', 'membertracker.co');
 		  ga('send', 'pageview');
-
+		  
+		  if(window.location.host.indexOf('heroku') > -1) {
+		  	window.location = 'http://www.membertracker.co';
+		  }
 		</script>
 
 		<script src="js/jquery.js"></script>
